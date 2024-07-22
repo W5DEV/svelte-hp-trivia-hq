@@ -240,7 +240,7 @@
                 <div class="flex flex-col items-center justify-center w-full">
                     <div class="flex flex-row items-center justify-center w-full gap-4">
                         <label for="completed">Completed?</label>
-                        <input type="checkbox" class="toggle toggle-success" checked={true}
+                        <input type="checkbox" class="toggle toggle-success" checked={false}
                             id="completed"
                             name="completed"
                         />
