@@ -10,6 +10,8 @@
         source: string;
         tags: string[];
         type: string;
+        questionOrigin: string;
+        completed: string;
         updated_at: string;
         created_at: string;
     }
@@ -73,7 +75,7 @@
     {#each questions as question}
         <div class="border collapse collapse-arrow join-item border-base-300">
             <input type="radio" name="my-accordion-4" />
-            <div class="text-xl font-medium collapse-title">{question.question}</div>
+            <div class={question.completed === "true" ? `text-xl font-medium collapse-title text-success` : `text-xl font-medium collapse-title text-error`}>{question.question}</div>
             <div class="flex flex-col gap-2 collapse-content">
                 {#each question.answers as answer, i}
                     <div class="flex flex-row items-center justify-start gap-1">

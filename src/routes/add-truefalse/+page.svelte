@@ -34,7 +34,9 @@
 		source: { validators: [required] },
 		tags: { validators: [required] },
 		difficulty: { validators: [required] },
-		correct_answer: { validators: [required] }
+		correct_answer: { validators: [required] },
+        completed: { validators: [] }, 
+        question_origin: { validators: [required] }
 	});
 
 	let showSubmit = false;
@@ -52,7 +54,9 @@
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
 			type: 'multi-choice',
 			difficulty: $form.difficulty.value,
-			correct_answer: $form.correct_answer.value
+			correct_answer: $form.correct_answer.value,
+            completed: $form.completed.value ? 'true' : 'false',
+            question_origin: $form.question_origin.value
 		};
 		try {
 			const response = await fetch('https://hp-api.greatidea.dev/api/questions/', {
@@ -162,6 +166,29 @@
                     </select>
                     <div class="w-full text-sm text-error" hidden={$form.correct_answer.valid}>
                         <p>Correct answer is required.</p>
+                    </div>
+                </div>
+
+				<div class="flex flex-col items-center justify-center w-full">
+                    <input
+                        type="text"
+                        id="question_origin"
+                        name="question_origin"
+                        class="w-full input input-bordered"
+                        placeholder="Question Origin (Where did this question originate?)"
+                    />
+                    <div class="w-full text-sm text-error" hidden={$form.question_origin.valid}>
+                        <p>Question origin is required.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center w-full">
+                    <div class="flex flex-row items-center justify-center w-full gap-4">
+                        <label for="completed">Completed?</label>
+                        <input type="checkbox" class="toggle toggle-success" checked={true}
+                            id="completed"
+                            name="completed"
+                        />
                     </div>
                 </div>
 			</div>
