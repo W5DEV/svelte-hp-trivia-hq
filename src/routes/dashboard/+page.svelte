@@ -63,7 +63,7 @@
     {#if questions.length > 0}
         <a href="/add-multichoice" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Choice Question</a>
         <a href="/add-truefalse" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
-        <a href="/add-multichoice" class="btn btn-disabled btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
+        <a href="/add-multiselect" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
         <span class="text-xl">Total Number of Questions Added: {questions.length}</span>
         <!-- {#each questions as question}
             <div class="flex flex-col items-center justify-center w-full gap-4">
