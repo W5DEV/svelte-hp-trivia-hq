@@ -52,7 +52,7 @@
 			answers: ["True", "False"],
 			source: $form.source.value,
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
-			type: 'multi-choice',
+			type: 'true-false',
 			difficulty: $form.difficulty.value,
 			correct_answer: $form.correct_answer.value,
             completed: $form.completed.value ? 'true' : 'false',

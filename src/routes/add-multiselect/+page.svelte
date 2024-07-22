@@ -53,7 +53,7 @@
 			answers: $form.answers.value.split('\n').map((answer) => answer.trim()),
 			source: $form.source.value,
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
-			type: 'multi-choice',
+			type: 'multi-select',
 			difficulty: $form.difficulty.value,
 			correct_answer: $form.correct_answer.value.split('\n').map((answer) => answer.trim()).toLocaleString(),
             completed: $form.completed.value ? 'true' : 'false',
