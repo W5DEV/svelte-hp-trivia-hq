@@ -48,7 +48,9 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                questions = data.data;
+                questions = data.data.sort((a: Question, b: Question) => {
+                    return a.created_at > b.created_at ? -1 : 1;
+                })
             } else {
                 console.log(response);
                 alert(response.status + ': Error retrieving questions.');
