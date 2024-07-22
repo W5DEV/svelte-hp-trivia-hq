@@ -43,10 +43,8 @@
 
     async function getQuestions() {
         try {
-            const response = await fetch('http://hp-api.greatidea.dev/api/questions', {
-                method: 'GET',
-                headers: {
-                }   
+            const response = await fetch('https://hp-api.greatidea.dev/api/questions/', {
+                method: 'GET' 
             });
             if (response.ok) {
                 const data = await response.json();
