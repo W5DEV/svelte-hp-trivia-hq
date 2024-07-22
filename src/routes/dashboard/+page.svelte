@@ -65,16 +65,24 @@
         <a href="/add-truefalse" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
         <a href="/add-multiselect" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
         <span class="text-xl">Total Number of Questions Added: {questions.length}</span>
-        <!-- {#each questions as question}
-            <div class="flex flex-col items-center justify-center w-full gap-4">
-                <h1 class="text-xl">{question.question}</h1>
-                <div class="flex flex-col items-center justify-center w-full gap-2">
-                    {#each question.answers as answer}
-                        <button class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">{answer}</button>
-                    {/each}
-                </div>
+
+
+<div class="w-full join join-vertical">
+    {#each questions as question}
+        <div class="border collapse collapse-arrow join-item border-base-300">
+            <input type="radio" name="my-accordion-4" />
+            <div class="text-xl font-medium collapse-title">{question.question}</div>
+            <div class="flex flex-col gap-2 collapse-content">
+                {#each question.answers as answer, i}
+                    <div class="flex flex-row items-center justify-start gap-1">
+                        <span class="text-primary">{i + 1}. </span>
+                        <span class="text-primary">{answer}</span>
+                    </div>
+                {/each}
             </div>
-        {/each} -->
+        </div>
+    {/each}
+</div>
     {:else}
         <h1 class="text-xl">Loading...</h1>
     {/if}
