@@ -26,7 +26,7 @@
 
     async function getUser() {
         try {
-            const response = await fetch('http://hp-api.greatidea.dev/api/users/me', {
+            const response = await fetch('https://hp-api.greatidea.dev/api/users/me', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + newToken
