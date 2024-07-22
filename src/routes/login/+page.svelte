@@ -18,7 +18,7 @@
 
     async function submitForm() {
         try {
-            const response = await fetch('https://hp-api.greatidea.dev/api/auth/login', {
+            const response = await fetch('http://hp-api.greatidea.dev/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,7 +48,7 @@
 
     async function getUser() {
         try {
-            const response = await fetch('http://localhost:33500/api/users/me', {
+            const response = await fetch('http://hp-api.greatidea.dev/api/users/me', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + newToken
@@ -67,21 +67,21 @@
 
 </script>
 
-<section class="flex flex-col justify-start items-center w-full flex-1 gap-12 py-16">
-    <div class="flex flex-col justify-center items-center gap-2">
-        <h1 class="text-2xl text-primary font-medium">Admin Login</h1>
+<section class="flex flex-col items-center justify-start flex-1 w-full gap-12 py-16">
+    <div class="flex flex-col items-center justify-center gap-2">
+        <h1 class="text-2xl font-medium text-primary">Admin Login</h1>
         <p>Enter your email and password to login.</p>
-        <a class="link link-accent font-medium" href="/">If you do not have a login, click here to return to the home screen.</a>
+        <a class="font-medium link link-accent" href="/">If you do not have a login, click here to return to the home screen.</a>
     </div>
     {#if !showSubmit}
-        <form use:form on:submit|preventDefault={onSubmit} class="gap gap-6 flex flex-col justify-center items-center">
-            <div class="flex flex-col justify-center items-center gap-1">
-                <label class="input input-bordered flex items-center gap-2">
+        <form use:form on:submit|preventDefault={onSubmit} class="flex flex-col items-center justify-center gap-6 gap">
+            <div class="flex flex-col items-center justify-center gap-1">
+                <label class="flex items-center gap-2 input input-bordered">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
                     fill="currentColor"
-                    class="h-4 w-4 opacity-70">
+                    class="w-4 h-4 opacity-70">
                     <path
                     d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
                     <path
@@ -89,18 +89,18 @@
                 </svg>
                 <input type="text" id="email" name="email" class="grow" placeholder="Email" />
                 </label>
-                <div class="text-error text-sm w-full"  hidden={$form.email.valid}>
+                <div class="w-full text-sm text-error"  hidden={$form.email.valid}>
                     <p>Email is not valid.</p>
                 </div>
             </div>
 
-            <div class="flex flex-col justify-center items-center gap-1">
-                <label class="input input-bordered flex items-center gap-2">
+            <div class="flex flex-col items-center justify-center gap-1">
+                <label class="flex items-center gap-2 input input-bordered">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
                     fill="currentColor"
-                    class="h-4 w-4 opacity-70">
+                    class="w-4 h-4 opacity-70">
                     <path
                     fill-rule="evenodd"
                     d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
@@ -108,7 +108,7 @@
                 </svg>
                 <input type="password" id="password" name="password" class="grow" placeholder="Password" />
                 </label>
-                <div class="text-error text-sm w-full" hidden={$form.password.valid}>
+                <div class="w-full text-sm text-error" hidden={$form.password.valid}>
                     <p>Password is required.</p>
                 </div>
             </div>
@@ -118,8 +118,8 @@
     {/if}
 
     {#if showSubmit}
-        <div class="flex flex-col gap-4 justify-center items-center">
-            <p class="text-primary text-2xl font-medium">Please wait...</p>
+        <div class="flex flex-col items-center justify-center gap-4">
+            <p class="text-2xl font-medium text-primary">Please wait...</p>
             <span class="loading loading-infinity text-primary loading-lg"></span>
         </div>
     {/if}

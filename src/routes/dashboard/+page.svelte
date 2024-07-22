@@ -24,7 +24,7 @@
 
     async function getUser() {
         try {
-            const response = await fetch('http://localhost:33500/api/users/me', {
+            const response = await fetch('http://hp-api.greatidea.dev/api/users/me', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + newToken
@@ -43,7 +43,7 @@
 
     async function getQuestions() {
         try {
-            const response = await fetch('http://localhost:33500/api/questions', {
+            const response = await fetch('http://hp-api.greatidea.dev/api/questions', {
                 method: 'GET',
                 headers: {
                 }   
@@ -60,12 +60,12 @@
         }
     }
 </script>
-<section class="flex flex-col justify-center items-center w-full flex-1 gap-12 py-16">
+<section class="flex flex-col items-center justify-center flex-1 w-full gap-12 py-16">
     {#if questions.length > 0}
         {#each questions as question}
-            <div class="flex flex-col justify-center items-center w-full gap-4">
+            <div class="flex flex-col items-center justify-center w-full gap-4">
                 <h1 class="text-xl">{question.question}</h1>
-                <div class="flex flex-col justify-center items-center w-full gap-2">
+                <div class="flex flex-col items-center justify-center w-full gap-2">
                     {#each question.answers as answer}
                         <button class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">{answer}</button>
                     {/each}
