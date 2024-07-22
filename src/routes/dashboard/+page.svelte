@@ -49,9 +49,9 @@
             if (response.ok) {
                 const data = await response.json();
                 questions = data.data;
-                console.log(questions);
             } else {
-                console.log(response.status, response.statusText);
+                console.log(response);
+                alert(response.status + ': Error retrieving questions.');
             }
         } catch (error) {
             console.error(error);
@@ -59,7 +59,11 @@
     }
 </script>
 <section class="flex flex-col items-center justify-center flex-1 w-full gap-12 py-16">
+
     {#if questions.length > 0}
+        <a href="/add-multichoice" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Choice Question</a>
+        <a href="/add-multichoice" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
+        <a href="/add-multichoice" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
         {#each questions as question}
             <div class="flex flex-col items-center justify-center w-full gap-4">
                 <h1 class="text-xl">{question.question}</h1>
