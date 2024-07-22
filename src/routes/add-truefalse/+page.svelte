@@ -31,10 +31,6 @@
 
 	const form = useForm({
 		question: { validators: [required] },
-		answer_one: { validators: [required] },
-		answer_two: { validators: [required] },
-		answer_three: { validators: [required] },
-		answer_four: { validators: [required] },
 		source: { validators: [required] },
 		tags: { validators: [required] },
 		difficulty: { validators: [required] },
@@ -51,12 +47,7 @@
 	async function submitForm() {
 		const questionValues = {
 			question: $form.question.value,
-			answers: [
-				$form.answer_one.value,
-				$form.answer_two.value,
-				$form.answer_three.value,
-				$form.answer_four.value
-			],
+			answers: ["True", "False"],
 			source: $form.source.value,
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
 			type: 'multi-choice',
@@ -112,54 +103,6 @@
                     </div>
                 </div>
 				<div class="flex flex-col items-center justify-center w-full">
-                    <input
-                        type="text"
-                        id="answer_one"
-                        name="answer_one"
-                        class="w-full input input-bordered"
-                        placeholder="Answer 1"
-                    />
-                    <div class="w-full text-sm text-error" hidden={$form.answer_one.valid}>
-                        <p>Answer is required.</p>
-                    </div>
-                </div>
-				<div class="flex flex-col items-center justify-center w-full">
-                    <input
-                        type="text"
-                        id="answer_two"
-                        name="answer_two"
-                        class="w-full input input-bordered"
-                        placeholder="Answer 2"
-                    />
-                    <div class="w-full text-sm text-error" hidden={$form.answer_two.valid}>
-                        <p>Answer is required.</p>
-                    </div>
-                </div>
-				<div class="flex flex-col items-center justify-center w-full">
-                    <input
-                        type="text"
-                        id="answer_three"
-                        name="answer_three"
-                        class="w-full input input-bordered"
-                        placeholder="Answer 3"
-                    />
-                    <div class="w-full text-sm text-error" hidden={$form.answer_three.valid}>
-                        <p>Answer is required.</p>
-                    </div>
-                </div>
-				<div class="flex flex-col items-center justify-center w-full">
-                    <input
-                        type="text"
-                        id="answer_four"
-                        name="answer_four"
-                        class="w-full input input-bordered"
-                        placeholder="Answer 4"
-                    />
-                    <div class="w-full text-sm text-error" hidden={$form.answer_four.valid}>
-                        <p>Answer is required.</p>
-                    </div>
-                </div>
-				<div class="flex flex-col items-center justify-center w-full">
                     <select
                         id="source"
                         name="source"
@@ -208,13 +151,15 @@
                 </div>
 
 				<div class="flex flex-col items-center justify-center w-full">
-                    <input
-                        type="text"
+                    <select
                         id="correct_answer"
                         name="correct_answer"
                         class="w-full input input-bordered"
-                        placeholder="Correct Answer"
-                    />
+                    >
+                        <option selected disabled>Select The Correct Answer</option>
+                        <option value="True">True</option>
+                        <option value="False">False</option>
+                    </select>
                     <div class="w-full text-sm text-error" hidden={$form.correct_answer.valid}>
                         <p>Correct answer is required.</p>
                     </div>
