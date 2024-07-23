@@ -10,7 +10,8 @@
         source: string;
         tags: string[];
         type: string;
-        questionOrigin: string;
+        correct_answer: string;
+        question_origin: string;
         completed: string;
         updated_at: string;
         created_at: string;
@@ -76,13 +77,42 @@
         <div class="border collapse collapse-arrow join-item border-base-300">
             <input type="radio" name="my-accordion-4" />
             <div class={question.completed === "true" ? `text-xl font-medium collapse-title text-success` : `text-xl font-medium collapse-title text-error`}>{question.question}</div>
-            <div class="flex flex-col gap-2 collapse-content">
-                {#each question.answers as answer, i}
+            <div class="flex flex-col gap-3 collapse-content">
+                <div class="flex flex-col">
+                    <p class="text-tertiary">Answers:</p>
+                    {#each question.answers as answer, i}
+                        <div class="flex flex-row items-center justify-start gap-1">
+                            <span class="text-primary">{i + 1}. </span>
+                            <span class="text-primary">{answer}</span>
+                        </div>
+                    {/each}
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-tertiary">Tags:</p>
                     <div class="flex flex-row items-center justify-start gap-1">
-                        <span class="text-primary">{i + 1}. </span>
-                        <span class="text-primary">{answer}</span>
+                        {#each question.tags as tag}
+                                <span class="text-primary">{tag},</span>
+                        {/each}
                     </div>
-                {/each}
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-tertiary">Source:</p>
+                    <div class="flex flex-row items-center justify-start gap-1">
+                        <span class="text-primary">{question.source}</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-tertiary">Question Origin:</p>
+                    <div class="flex flex-row items-center justify-start gap-1">
+                        <span class="text-primary">{question.question_origin}</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-tertiary">Correct Answer:</p>
+                    <div class="flex flex-row items-center justify-start gap-1">
+                        <span class="text-primary">{question.correct_answer}</span>
+                    </div>
+                </div>
             </div>
         </div>
     {/each}
