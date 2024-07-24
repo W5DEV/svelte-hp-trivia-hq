@@ -201,7 +201,7 @@
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-full">
-                    <div class="flex flex-row items-center justify-center w-ful gap-4l">
+                    <div class="flex flex-row items-center justify-center gap-4 w-ful">
                         <label for="completed">Completed?</label>
                         <input type="checkbox" class="toggle toggle-success"
                             id="completed"
