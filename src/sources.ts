@@ -53,7 +53,7 @@ export const question_origins: Origin[] = [
 	{
 		name: 'The HARDEST Lord Voldemort Quiz EVER',
 		link: 'https://youtu.be/560VDNr1OQY?si=-T4JZwRGyPSmRJGh',
-		active: false
+		active: true
 	},
 	{
 		name: 'The HARDEST Forbidden Forest Trivia Quiz EVER',
