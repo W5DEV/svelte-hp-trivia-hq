@@ -68,7 +68,7 @@ export const question_origins: Origin[] = [
 	{
 		name: 'The ULTIMATE Fantastic Beasts Quiz',
 		link: 'https://youtu.be/bCAPlM2lxyM?si=goUJ1E8tQAmEuxqT',
-		active: false
+		active: true
 	},
 	{
 		name: 'The ULTIMATE Harry Potter MOVIE Trivia Quiz',
