@@ -76,7 +76,7 @@
 			if (response.ok) {
 				const data = await response.json();
 				console.log(data);
-				alert('Question added successfully!');
+				console.log('Question added successfully!');
 				setTimeout(() => {
 					goto('/dashboard');
 				}, 1000);

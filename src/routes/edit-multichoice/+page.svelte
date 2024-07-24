@@ -99,7 +99,7 @@
 			if (response.ok) {
 				const data = await response.json();
 				console.log(data);
-				alert('Question updated successfully!');
+				console.log('Question updated successfully!');
 				setTimeout(() => {
 					goto('/dashboard');
 				}, 1000);
