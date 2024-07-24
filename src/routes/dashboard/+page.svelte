@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { token } from "../../store";
+	import { token, current_question } from "../../store";
 	import { goto } from "$app/navigation";
 
    type Question = {
@@ -10,6 +10,7 @@
         source: string;
         tags: string[];
         type: string;
+        difficulty: string;
         correct_answer: string;
         question_origin: string;
         completed: string;
@@ -62,6 +63,19 @@
             console.error(error);
         }
     }
+
+    function handleEditClick(question: Question) {
+        return () => {
+            current_question.set(question);
+            if (question.type === 'multi-choice') {
+                goto('/edit-multichoice');
+            } else if (question.type === 'true-false') {
+                goto('/edit-truefalse');
+            } else if (question.type === 'multi-select') {
+                goto('/edit-multiselect');
+            }
+        }
+    }
 </script>
 <section class="flex flex-col items-center justify-center flex-1 w-full gap-12 py-16">
 
@@ -76,7 +90,7 @@
     {#each questions as question}
         <div class="border collapse collapse-arrow join-item border-base-300">
             <input type="radio" name="my-accordion-4" />
-            <div class={question.completed === "true" ? `text-xl font-medium collapse-title text-success` : `text-xl font-medium collapse-title text-error`}>{question.question}</div>
+                <div class={question.completed === "true" ? `text-xl font-medium collapse-title text-success` : `text-xl font-medium collapse-title text-error`}>{question.question}</div>
             <div class="flex flex-col gap-3 collapse-content">
                 <div class="flex flex-col">
                     <p class="text-tertiary">Answers:</p>
@@ -113,6 +127,7 @@
                         <span class="text-primary">{question.correct_answer}</span>
                     </div>
                 </div>
+                <div class="flex flex-row items-center justify-end w-full"><button on:click={handleEditClick(question)} class="btn btn-primary btn-sm">Edit</button></div>
             </div>
         </div>
     {/each}
