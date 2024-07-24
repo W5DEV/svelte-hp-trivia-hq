@@ -91,7 +91,7 @@
 </script>
 
 <section class="flex flex-col items-center justify-center flex-1 w-full gap-12 py-16">
-    <h1 class="text-2xl font-medium text-primary">Submit a new Multi Choice Question</h1>
+    <h1 class="text-2xl font-medium text-primary">Submit a new True/False Question</h1>
 	{#if !showSubmit}
 		<form
 			use:form
@@ -207,6 +207,7 @@
 	{#if showSubmit}
 		<div class="flex flex-col items-center justify-center gap-4">
 			<h1 class="text-xl">Question submitted successfully!</h1>
+			<p class="text-base">Redirecting...</p>
 		</div>
 	{/if}
 </section>

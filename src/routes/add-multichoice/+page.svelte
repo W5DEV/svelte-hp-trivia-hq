@@ -263,6 +263,7 @@
 	{#if showSubmit}
 		<div class="flex flex-col items-center justify-center gap-4">
 			<h1 class="text-xl">Question submitted successfully!</h1>
+			<p class="text-base">Redirecting...</p>
 		</div>
 	{/if}
 </section>
