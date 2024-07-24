@@ -3,9 +3,15 @@
 	import { current_question, token } from '../../store';
 	import { goto } from '$app/navigation';
 	import { required, useForm } from 'svelte-use-form';
+	import { question_origins } from '../../sources';
+
+    const questionOrigins = question_origins;
+
+    const questionOriginsActive = questionOrigins.filter((origin) => origin.active);
 
 	let newToken = $token;
     let question = $current_question;
+
 
 	onMount(() => {
 		newToken = $token;
@@ -53,6 +59,7 @@
 	$form.tags.value = question ? question.tags.join(', ') : '';
 	$form.difficulty.value = question ? question.difficulty : '';
     $form.correct_answer.value = question ? question.correct_answer : '';
+    $form.question_origin.value = question ? question.question_origin : '';
 
 	let showSubmit = false;
 
@@ -198,18 +205,19 @@
                     </div>
                 </div>
 
-				<div class="flex flex-col items-center justify-center w-full">
-                    <input
-                        type="text"
-                        id="question_origin"
-                        name="question_origin"
-                        class="w-full input input-bordered"
-                        placeholder="Question Origin (Where did this question originate?)"
-                        value={question?.question_origin}
-                    />
-                    <div class="w-full text-sm text-error" hidden={$form.question_origin.valid}>
-                        <p>Question origin is required.</p>
-                    </div>
+                <select
+                    id="question_origin"
+                    name="question_origin"
+                    class="w-full select select-bordered"
+                    placeholder="Select a question origin"
+                >
+                    <option disabled>Select a Question Origin</option>
+                    {#each questionOriginsActive as origin}
+                        <option selected={question?.question_origin === origin.name} value={origin.name}>{origin.name}</option>
+                    {/each}
+                </select>
+                <div class="w-full text-sm text-error" hidden={$form.question_origin.valid}>
+                    <p>Question origin is required.</p>
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-full">

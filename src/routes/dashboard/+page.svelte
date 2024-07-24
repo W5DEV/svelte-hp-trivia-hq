@@ -83,6 +83,7 @@
         <a href="/add-multichoice" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Choice Question</a>
         <a href="/add-truefalse" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
         <a href="/add-multiselect" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
+        <a href="/sources" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Sources</a>
         <span class="text-xl">Total Number of Questions Added: {questions.length}</span>
 
 
