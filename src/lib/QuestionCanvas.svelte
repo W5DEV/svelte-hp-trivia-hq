@@ -47,9 +47,9 @@
 
 <div class="flex items-center justify-center w-screen font-caveat">
     <div class="flex flex-col items-center justify-between w-screen max-w-4xl gap-6 px-10 md:px-28 py-24 min-h-[600px] h-content" style="background-image: url({parchment}); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <div class="flex flex-col items-center justify-center gap-4 text-left">
+        <div class="flex flex-col items-center justify-center w-full gap-4 text-left">
             <h2 class="text-3xl font-semibold text-neutral">Question {questionNumber} of {totalQuestions}:</h2>
-            <h2 class="text-4xl font-semibold text-neutral">{question.question}</h2>
+            <h2 class="w-full text-4xl font-semibold text-left text-neutral">{question.type === "multi-select" ? "Select all that apply: " : question.type === "true-false" ? "True or False: "  : ""}{question.question}</h2>
         </div>
         {#if question.type === 'multi-select'}
             <div class="flex flex-col items-start justify-center w-full gap-4 text-left">
