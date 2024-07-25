@@ -24,11 +24,11 @@
     if (sortedCorrectAnswers === sortedAnswer) {
       numCorrect++;
       await fetch(`https://hp-api.greatidea.dev/api/questions/answer?questionsId=${currentQuestions[currentQuestionIndex].id}&is_correct=true`, {
-        method: 'POST'
+        method: 'PUT'
         });
     } else {
         await fetch(`https://hp-api.greatidea.dev/api/questions/answer?questionsId=${currentQuestions[currentQuestionIndex].id}&is_correct=false`, {
-        method: 'POST'
+        method: 'PUT'
         });
     }
     
@@ -45,15 +45,16 @@
 
   }
 
-  async function handleLike() {
-        if (questionArray[currentQuestionIndex].isLiked) {
+  async function handleLike(question: QuestionRecap) {
+        if (question.isLiked) {
             return;
         } else {
-            questionArray[currentQuestionIndex].isLiked = true;
-            await fetch(`https://hp-api.greatidea.dev/api/questions/like?questionsId=${currentQuestions[currentQuestionIndex].id}`, {
-            method: 'POST'
+            question.isLiked = true;
+            await fetch(`https://hp-api.greatidea.dev/api/questions/like?questionsId=${currentQuestions[question.questionNumber - 1].id}`, {
+            method: 'PUT'
             });
         }
+        return question;
   }
 </script>
 
@@ -74,7 +75,7 @@
                 <p class="text-2xl font-medium text-primary front-semibold">{question.questionNumber}. {question.question}</p>
                 <p class="text-lg font-medium text-primary">Correct Answer: {question.correct_answer}</p>
                 <p class={question.correct ? `text-lg font-medium text-success` : `text-lg font-medium text-error italic line-through`}>Your Answer: {question.your_answer}</p>
-                <button on:click={handleLike} class={question.isLiked ? `btn btn-success` : `btn btn-info`}> 
+                <button on:click={() => handleLike(question)} class={'btn ' + (question.isLiked ? 'btn-success' : 'btn-info')}> 
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="w-6 h-6"

@@ -29,7 +29,6 @@
     }
 
     function handleSelection(selectedOption: typeof displayedAnswers[0], i: number) {
-        console.log(selectedAnswer)
         displayedAnswers.forEach((option) => {
             option.selected = false;
             });
