@@ -9,7 +9,7 @@
 
     async function handleQuizClick(quizName: string) {
         try {
-            const response = await fetch(`https://hp-api.greatidea.dev/api/questions/question_origin?question_origin=${quizName}`, {
+            const response = await fetch(`https://hp-api.greatidea.dev/api/questions/origin?question_origin=${quizName}`, {
                 method: 'GET' 
             });
             if (response.ok) {
@@ -31,8 +31,8 @@
 
 </script>
 
-<div>
-    <h2>Available Quizzes</h2>
+<div class="w-full px-12">
+    <h2 class="w-full mb-8 text-2xl font-semibold text-center text-primary">Available Quizzes</h2>
     {#if availableQuizzes.length > 0}
         <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
             {#each availableQuizzes as quiz}
