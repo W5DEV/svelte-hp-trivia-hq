@@ -1,6 +1,7 @@
 <script lang='ts'>
-  import QuestionCanvas from '../../lib/QuestionCanvas.svelte';
-  import { questions } from '../../store';
+    import { writable } from 'svelte/store';
+    import QuestionCanvas from '../../lib/QuestionCanvas.svelte';
+    import { questions } from '../../store';
 
   const currentQuestions = $questions;
 
@@ -16,7 +17,7 @@
   let currentQuestionIndex = 0;
   let numCorrect = 0;
   let numQuestions = currentQuestions.length;
-  let questionArray: QuestionRecap[] = [];
+  let questionArray = writable<QuestionRecap[]>([]);
 
   async function handleAnswer(answer: string) {
     const sortedCorrectAnswers = currentQuestions[currentQuestionIndex].correct_answer.split(',').sort().join(', ');
@@ -32,14 +33,14 @@
         });
     }
     
-    questionArray.push({
+    questionArray.update(questionArray => [...questionArray, {
         questionNumber: currentQuestionIndex + 1,
         question: currentQuestions[currentQuestionIndex].question,
         correct_answer: sortedCorrectAnswers,
         your_answer: sortedAnswer,
         correct: sortedCorrectAnswers === sortedAnswer,
         isLiked: false
-    });
+    }]);
 
     currentQuestionIndex++;
 
@@ -49,12 +50,16 @@
         if (question.isLiked) {
             return;
         } else {
-            question.isLiked = true;
+            const updatedQuestion = { ...question, isLiked: true };
+
+            questionArray.update(questions => {
+                return questions.map(q => q.questionNumber === question.questionNumber ? updatedQuestion : q);
+            });
+
             await fetch(`https://hp-api.greatidea.dev/api/questions/like?questionsId=${currentQuestions[question.questionNumber - 1].id}`, {
-            method: 'PUT'
+                method: 'PUT'
             });
         }
-        return question;
   }
 </script>
 
@@ -70,7 +75,7 @@
     <p class="text-lg font-medium text-info">You answered {numCorrect} out of {numQuestions} questions correctly.</p>
     <div class="flex flex-col items-center justify-start w-full gap-3">
         <h2 class="text-xl font-semibold text-primary">Your Answers</h2>
-        {#each questionArray as question}
+        {#each $questionArray as question}
             <div class="flex flex-col items-start justify-start w-full gap-4 px-8">
                 <p class="text-2xl font-medium text-primary front-semibold">{question.questionNumber}. {question.question}</p>
                 <p class="text-lg font-medium text-primary">Correct Answer: {question.correct_answer}</p>
