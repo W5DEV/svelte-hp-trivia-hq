@@ -68,7 +68,6 @@
     onAnswer={handleAnswer} 
     questionNumber={currentQuestionIndex + 1}
     totalQuestions={numQuestions} />
-  />
 {:else}
   <div class="flex flex-col items-center justify-start gap-2">
     <h2 class="text-2xl font-semibold text-primary">Quiz Complete</h2>

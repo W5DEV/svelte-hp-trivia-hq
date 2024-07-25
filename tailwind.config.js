@@ -13,18 +13,19 @@ export default {
 					primary: '#740001',
 					secondary: '#00780e',
 					accent: '#eeba30',
-					neutral: '#726255',
+					neutral: '#740001',
 					'base-100': '#f1f1f1',
 					info: '#375798',
 					success: '#4bb534',
 					warning: '#ecb939',
-					error: '#cc0000'
+					error: '#cc0000',
+					scrawl: '#740001'
 				},
 				hpDark: {
 					primary: '#d3a625',
 					secondary: '#00780e',
 					accent: '#375798',
-					neutral: '#5d5d5d',
+					neutral: '#740001',
 					'base-100': '#372e29',
 					info: '#bebebe',
 					success: '#4bb534',
