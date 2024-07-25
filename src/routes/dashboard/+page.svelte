@@ -50,7 +50,7 @@
 
     async function getQuestions() {
         try {
-            const response = await fetch('https://hp-api.greatidea.dev/api/questions/recents', {
+            const response = await fetch('https://hp-api.greatidea.dev/api/questions/recents?limit=50', {
                 method: 'GET' 
             });
             if (response.ok) {
