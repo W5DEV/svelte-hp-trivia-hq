@@ -50,7 +50,7 @@
 
     async function getQuestions() {
         try {
-            const response = await fetch('https://hp-api.greatidea.dev/api/questions/recents?limit=50', {
+            const response = await fetch('https://hp-api.greatidea.dev/api/questions/', {
                 method: 'GET' 
             });
             if (response.ok) {
@@ -85,12 +85,7 @@
 
     {#if questions && questions.length > 0}
         <div class="flex flex-row flex-wrap items-center justify-center gap-4">
-            <a href="/add-multichoice" class="btn btn-primary text-base-100 btn-wide">Add Multiple Choice Question</a>
-            <a href="/add-truefalse" class="btn btn-primary text-base-100 btn-wide">Add True/False Question</a>
-            <a href="/add-multiselect" class="btn btn-primary text-base-100 btn-wide">Add Multiple Select Question</a>
-        </div>
-        <div class="flex flex-row flex-wrap items-center justify-center gap-4">
-            <a href="/all-questions" class="btn btn-primary text-base-100 btn-wide">Full Question List</a>
+            <a href="/dashboard" class="btn btn-primary text-base-100 btn-wide">Dashboard</a>
             <a href="/sources" class="btn btn-primary text-base-100 btn-wide">Sources</a>
         </div>
 
