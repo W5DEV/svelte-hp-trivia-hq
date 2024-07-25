@@ -100,6 +100,7 @@
 			} else {
 				console.log(response.status, response.statusText);
 				alert(response.status + ': Invalid data. Please try again.');
+				showSubmit = false;
 			}
 		} catch (error) {
 			console.error(error);
@@ -220,8 +221,8 @@
                 </div>
 			</div>
 
-			<button type="submit" class="btn btn-primary btn-wide" disabled={!$form.valid}>Save</button>
-			<button class="btn btn-primary btn-wide" on:click={() => (showSubmit = true)}>Cancel</button>
+			<button type="submit" class="btn btn-secondary btn-wide text-base-100" disabled={!$form.valid}>Save</button>
+			<button class="btn btn-primary btn-wide text-base-100" on:click={() => (goto("/dashboard"))}>Cancel</button>
 		</form>
 	{/if}
 	{#if showSubmit}

@@ -80,11 +80,11 @@
 <section class="flex flex-col items-center justify-center flex-1 w-full gap-12 py-16">
 
     {#if questions.length > 0}
-        <a href="/add-multichoice" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Choice Question</a>
-        <a href="/add-truefalse" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
-        <a href="/add-multiselect" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
-        <a href="/sources" class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg">Sources</a>
-        <span class="text-xl">Total Number of Questions Added: {questions.length}</span>
+        <a href="/add-multichoice" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Choice Question</a>
+        <a href="/add-truefalse" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
+        <a href="/add-multiselect" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
+        <a href="/sources" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Sources</a>
+        <span class="text-xl font-bold text-secondary">Total Number of Questions Added: {questions.length}</span>
 
 
 <div class="w-full join join-vertical">
@@ -128,7 +128,7 @@
                         <span class="text-primary">{question.correct_answer}</span>
                     </div>
                 </div>
-                <div class="flex flex-row items-center justify-end w-full"><button on:click={handleEditClick(question)} class="btn btn-primary btn-sm">Edit</button></div>
+                <div class="flex flex-row items-center justify-end w-full"><button on:click={handleEditClick(question)} class="btn btn-primary btn-sm text-base-100">Edit</button></div>
             </div>
         </div>
     {/each}

@@ -5,10 +5,10 @@
 </script>
 
 <div class="flex flex-col items-center justify-center gap-4">
-    <h1 class="text-3xl font-bold text-center">Harry Potter Trivia Quiz Sources</h1>
-    <p class="text-center text-primary">The sources in green are currently active inside the quiz.</p>
-    <p class="text-center text-primary">To activate additional sources, ping John.</p>
-    <a class="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" href="/dashboard">Dashboard</a>
+    <h1 class="text-3xl font-bold text-center text-primary">Harry Potter Trivia Quiz Sources</h1>
+    <p class="font-semibold text-center text-info">The sources in green are currently active inside the quiz.</p>
+    <p class="font-semibold text-center text-info">To activate additional sources, ping John.</p>
+    <a class="text-base-100 btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" href="/dashboard">Dashboard</a>
     <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
         {#each questionOrigins as origin}
                 <div class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300">
