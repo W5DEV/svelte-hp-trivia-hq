@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
-type Question = {
+export type Question = {
 	id: string;
 	question: string;
 	answers: string[];
@@ -27,4 +27,9 @@ token.subscribe((val) => {
 export const current_question = writable<Question | null>(null);
 current_question.subscribe((val) => {
 	if (browser) return (localStorage.current_question = JSON.stringify(val));
+});
+
+export const questions = writable<Question[]>([]);
+questions.subscribe((val) => {
+	if (browser) return (localStorage.questions = JSON.stringify(val));
 });
