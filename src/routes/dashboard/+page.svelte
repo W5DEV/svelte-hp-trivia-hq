@@ -135,7 +135,7 @@
                     <p class="text-tertiary">Difficulty:</p>
                     <div class="flex flex-row items-center justify-start gap-1">
                         {#if question.difficulty}
-                            <span class={question.difficulty < 26 ? `text-error` : question.difficulty < 76 ? `text-warning` : `text-success`}>{question.difficulty}</span>
+                            <span class={question.difficulty < 26 ? `text-error` : question.difficulty < 76 ? `text-warning` : `text-success`}>{100 - question.difficulty}</span>
                         {:else}
                             <span class="text-neutral">No Data</span>
                         {/if}
