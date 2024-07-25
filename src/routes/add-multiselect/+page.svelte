@@ -39,7 +39,6 @@
         answers: { validators: [required] },
 		source: { validators: [required] },
 		tags: { validators: [required] },
-		difficulty: { validators: [required] },
 		correct_answer: { validators: [required] },
         completed: { validators: [] }, 
         question_origin: { validators: [required] }
@@ -59,7 +58,6 @@
 			source: $form.source.value,
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
 			type: 'multi-select',
-			difficulty: $form.difficulty.value,
 			correct_answer: $form.correct_answer.value.split('\n').map((answer) => answer.trim()).toLocaleString(),
             completed: $form.completed.value ? 'true' : 'false',
             question_origin: $form.question_origin.value
@@ -154,23 +152,6 @@
                     />
                     <div class="w-full text-sm text-error" hidden={$form.tags.valid}>
                         <p>Tags are required. Separate tags via comma.</p>
-                    </div>
-                </div>
-
-				<div class="flex flex-col items-center justify-center w-full">
-                    <select
-                        id="difficulty"
-                        name="difficulty"
-                        class="w-full input input-bordered"
-                        placeholder="Select a difficulty"
-                    >
-                        <option selected disabled>Select a difficulty</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                    <div class="w-full text-sm text-error" hidden={$form.difficulty.valid}>
-                        <p>Difficulty is required.</p>
                     </div>
                 </div>
 

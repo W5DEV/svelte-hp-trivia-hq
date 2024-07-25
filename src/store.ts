@@ -8,7 +8,10 @@ type Question = {
 	source: string;
 	tags: string[];
 	type: string;
-	difficulty: string;
+	difficulty?: number;
+	amount_correct?: number;
+	amount_seen?: number;
+	likes?: number;
 	correct_answer: string;
 	question_origin: string;
 	completed: string;

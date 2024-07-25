@@ -10,7 +10,10 @@
         source: string;
         tags: string[];
         type: string;
-        difficulty: string;
+        difficulty: number;
+        amount_correct: number;
+        amount_seen: number;
+        likes: number;
         correct_answer: string;
         question_origin: string;
         completed: string;
@@ -126,6 +129,26 @@
                     <p class="text-tertiary">Correct Answer:</p>
                     <div class="flex flex-row items-center justify-start gap-1">
                         <span class="text-primary">{question.correct_answer}</span>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-4">
+                    <p class="text-tertiary">Difficulty:</p>
+                    <div class="flex flex-row items-center justify-start gap-1">
+                        {#if question.difficulty}
+                            <span class={question.difficulty < 26 ? `text-error` : question.difficulty < 76 ? `text-warning` : `text-success`}>{question.difficulty}</span>
+                        {:else}
+                            <span class="text-neutral">No Data</span>
+                        {/if}
+                    </div>
+                </div>
+                <div class="flex flex-row gap-4">
+                    <p class="text-tertiary">Likes:</p>
+                    <div class="flex flex-row items-center justify-start gap-1">
+                        {#if question.likes}
+                            <span class="text-success">{question.likes}</span>
+                        {:else}
+                            <span class="text-error">0</span>
+                        {/if}
                     </div>
                 </div>
                 <div class="flex flex-row items-center justify-end w-full"><button on:click={handleEditClick(question)} class="btn btn-primary btn-sm text-base-100">Edit</button></div>

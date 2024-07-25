@@ -51,7 +51,6 @@
 		answer_four: { validators: [required] },
 		source: { validators: [required] },
 		tags: { validators: [required] },
-		difficulty: { validators: [required] },
 		correct_answer: { validators: [required] },
         completed: { validators: [] }, 
         question_origin: { validators: [required] }
@@ -59,7 +58,6 @@
 
     $form.source.value = question ? question.source : '';
 	$form.tags.value = question ? question.tags.join(', ') : '';
-	$form.difficulty.value = question ? question.difficulty : '';
     $form.question_origin.value = question ? question.question_origin : '';
     $form.completed.value = question ? question.completed : '';
 
@@ -82,7 +80,6 @@
 			source: $form.source.value,
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
 			type: 'multi-choice',
-			difficulty: $form.difficulty.value,
 			correct_answer: $form.correct_answer.value,
             completed: $form.completed.value ? 'true' : 'false',
             question_origin: $form.question_origin.value
@@ -218,23 +215,6 @@
                     />
                     <div class="w-full text-sm text-error" hidden={$form.tags.valid}>
                         <p>Tags are required. Separate tags via comma.</p>
-                    </div>
-                </div>
-
-				<div class="flex flex-col items-center justify-center w-full">
-                    <select
-                        id="difficulty"
-                        name="difficulty"
-                        class="w-full input input-bordered"
-                        placeholder="Select a difficulty"
-                    >
-                        <option disabled>Select a difficulty</option>
-                        <option selected={question?.difficulty === "easy"} value="easy">Easy</option>
-                        <option selected={question?.difficulty === "medium"} value="medium">Medium</option>
-                        <option selected={question?.difficulty === "hard"} value="hard">Hard</option>
-                    </select>
-                    <div class="w-full text-sm text-error" hidden={$form.difficulty.valid}>
-                        <p>Difficulty is required.</p>
                     </div>
                 </div>
 
