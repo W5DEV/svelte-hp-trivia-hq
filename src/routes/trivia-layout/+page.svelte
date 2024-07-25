@@ -23,11 +23,11 @@
     const sortedAnswer = answer.split(',').sort().join(', ');
     if (sortedCorrectAnswers === sortedAnswer) {
       numCorrect++;
-      await fetch(`https://greatidea.dev/api/questions/record_answer/${currentQuestions[currentQuestionIndex].id}?is_correct=true`, {
+      await fetch(`https://hp-api.greatidea.dev/api/questions/answer?questionsId=${currentQuestions[currentQuestionIndex].id}&is_correct=true`, {
         method: 'POST'
         });
     } else {
-        await fetch(`https://greatidea.dev/api/questions/record_answer/${currentQuestions[currentQuestionIndex].id}?is_correct=false`, {
+        await fetch(`https://hp-api.greatidea.dev/api/questions/answer?questionsId=${currentQuestions[currentQuestionIndex].id}&is_correct=false`, {
         method: 'POST'
         });
     }
@@ -50,7 +50,7 @@
             return;
         } else {
             questionArray[currentQuestionIndex].isLiked = true;
-            await fetch(`https://greatidea.dev/api/questions/record_like/${currentQuestions[currentQuestionIndex].id}`, {
+            await fetch(`https://hp-api.greatidea.dev/api/questions/like?questionsId=${currentQuestions[currentQuestionIndex].id}`, {
             method: 'POST'
             });
         }
