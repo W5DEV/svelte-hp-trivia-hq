@@ -50,14 +50,13 @@
 
     async function getQuestions() {
         try {
-            const response = await fetch('https://hp-api.greatidea.dev/api/questions/', {
+            const response = await fetch('https://hp-api.greatidea.dev/api/questions/recents', {
                 method: 'GET' 
             });
             if (response.ok) {
                 const data = await response.json();
-                questions = data.data.sort((a: Question, b: Question) => {
-                    return a.created_at > b.created_at ? -1 : 1;
-                })
+                console.log(data.data);
+                questions = data.data;
             } else {
                 console.log(response);
                 alert(response.status + ': Error retrieving questions.');
@@ -66,6 +65,8 @@
             console.error(error);
         }
     }
+
+    console.log(questions);
 
     function handleEditClick(question: Question) {
         return () => {
@@ -82,7 +83,7 @@
 </script>
 <section class="flex flex-col items-center justify-center flex-1 w-full gap-12 py-16">
 
-    {#if questions.length > 0}
+    {#if questions && questions.length > 0}
         <a href="/add-multichoice" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Choice Question</a>
         <a href="/add-truefalse" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add True/False Question</a>
         <a href="/add-multiselect" class="btn btn-primary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Multiple Select Question</a>
