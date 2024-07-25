@@ -61,6 +61,7 @@
 	$form.tags.value = question ? question.tags.join(', ') : '';
 	$form.difficulty.value = question ? question.difficulty : '';
     $form.question_origin.value = question ? question.question_origin : '';
+    $form.completed.value = question ? question.completed : '';
 
 	let showSubmit = false;
 

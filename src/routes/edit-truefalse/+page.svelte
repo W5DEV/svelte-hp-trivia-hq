@@ -60,6 +60,7 @@
 	$form.difficulty.value = question ? question.difficulty : '';
 	$form.correct_answer.value = question ? question.correct_answer : '';
     $form.question_origin.value = question ? question.question_origin : '';
+    $form.completed.value = question ? question.completed : '';
 
 	let showSubmit = false;
 
