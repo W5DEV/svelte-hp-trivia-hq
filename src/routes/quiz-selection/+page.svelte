@@ -37,7 +37,7 @@
         <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
             {#each availableQuizzes as quiz}
                 <div class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300">
-                    <button on:click={() => handleQuizClick(quiz.name)} class='text-xl font-medium text-primary'>{quiz.name}</button>
+                    <button on:click={() => handleQuizClick(quiz.name)} class='text-xl font-medium text-left text-primary'>{quiz.name}</button>
                     <a href={quiz.link} target="_blank" class="link link-info link-hover">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
