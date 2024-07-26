@@ -119,61 +119,63 @@
 	}
 </script>
 
-<div class="w-full px-12">
-	<h2 class="w-full mb-8 text-2xl font-semibold text-center text-primary">Available Quizzes</h2>
-	<p class="mb-4 text-center text-secondary">
-		Select a quiz to test your knowledge! You can choose to select from some randomized quizzes
-		which include 25 questions that are calculated to be either Most Popular, Most Difficult, Most
-		Liked, or Least Answered. You can also choose to take a quiz with 25 completely random
-		questions. Additionally, you can choose from any of the topics at the bottom for a more directed
-		quiz!
-	</p>
-	<div class="flex flex-row flex-wrap items-center justify-center gap-4">
-		<button on:click={() => handleMostDifficult()} class="btn btn-primary text-base-100 btn-wide"
-			>Most Difficult</button
-		>
-		<button on:click={() => handleMostPopular()} class="btn btn-primary text-base-100 btn-wide"
-			>Most Popular</button
-		>
-		<button on:click={() => handleMostLiked()} class="btn btn-primary text-base-100 btn-wide"
-			>Most Liked</button
-		>
-		<button on:click={() => handleLeastAnswered()} class="btn btn-primary text-base-100 btn-wide"
-			>Least Answered</button
-		>
-		<button on:click={() => handledRandomQuestions()} class="btn btn-primary text-base-100 btn-wide"
-			>Random Questions</button
-		>
-	</div>
-	{#if availableQuizzes.length > 0}
-		<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
-			{#each availableQuizzes as quiz}
-				<div
-					class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300"
-				>
-					<button
-						on:click={() => handleQuizClick(quiz.name)}
-						class="text-xl font-medium text-left text-primary">{quiz.name}</button
-					>
-					<a href={quiz.link} target="_blank" class="link link-info link-hover">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							class="w-6 h-6 stroke-info shrink-0"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-							></path>
-						</svg>
-					</a>
-				</div>
-			{/each}
-		</div>
-	{:else}
-		<p>No quizzes available</p>
-	{/if}
+<div class="flex items-center justify-center px-8 font-medium text-secondary">
+	<div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
+        <h2 class="w-full text-2xl font-bold text-center text-primary">Available Quizzes</h2>
+        <p class="mb-4 text-left text-secondary">
+            Select a quiz to test your knowledge! You can choose to select from some randomized quizzes
+            which include 25 questions that are calculated to be either Most Popular, Most Difficult, Most
+            Liked, or Least Answered. You can also choose to take a quiz with 25 completely random
+            questions. Additionally, you can choose from any of the topics at the bottom for a more directed
+            quiz!
+        </p>
+        <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+            <button on:click={() => handleMostDifficult()} class="btn btn-primary text-base-100 btn-wide"
+                >Most Difficult</button
+            >
+            <button on:click={() => handleMostPopular()} class="btn btn-primary text-base-100 btn-wide"
+                >Most Popular</button
+            >
+            <button on:click={() => handleMostLiked()} class="btn btn-primary text-base-100 btn-wide"
+                >Most Liked</button
+            >
+            <button on:click={() => handleLeastAnswered()} class="btn btn-primary text-base-100 btn-wide"
+                >Least Answered</button
+            >
+            <button on:click={() => handledRandomQuestions()} class="btn btn-primary text-base-100 btn-wide"
+                >Random Questions</button
+            >
+        </div>
+        {#if availableQuizzes.length > 0}
+            <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
+                {#each availableQuizzes as quiz}
+                    <div
+                        class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300"
+                    >
+                        <button
+                            on:click={() => handleQuizClick(quiz.name)}
+                            class="text-xl font-medium text-left text-primary">{quiz.name}</button
+                        >
+                        <a href={quiz.link} target="_blank" class="link link-info link-hover">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                class="w-6 h-6 stroke-info shrink-0"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </a>
+                    </div>
+                {/each}
+            </div>
+        {:else}
+            <p>No quizzes available</p>
+        {/if}
+    </div>
 </div>
