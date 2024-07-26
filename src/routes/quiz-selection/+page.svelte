@@ -1,60 +1,179 @@
-<script lang='ts'>
-	import { goto } from "$app/navigation";
-    import { question_origins } from "../../sources";
-    import { questions } from "../../store";
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { question_origins } from '../../sources';
+	import { questions } from '../../store';
 
-    $questions = [];
+	$questions = [];
 
-    const availableQuizzes = question_origins.filter((origin) => origin.active === true);
+	const availableQuizzes = question_origins.filter((origin) => origin.active === true);
 
-    async function handleQuizClick(quizName: string) {
-        try {
-            const response = await fetch(`https://hp-api.greatidea.dev/api/questions/origin?question_origin=${quizName}`, {
-                method: 'GET' 
-            });
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.data);
-                $questions = data.data;
-                console.log($questions);
-                alert('Quiz prepared!');
-                goto('/trivia-layout');
-            } else {
-                console.log(response);
-                alert(response.status + ': Error retrieving questions.');
-            }
-        } catch (error) {
-            console.error(error);
-        }
+	async function handleQuizClick(quizName: string) {
+		try {
+			const response = await fetch(
+				`https://hp-api.greatidea.dev/api/questions/origin?question_origin=${quizName}`,
+				{
+					method: 'GET'
+				}
+			);
+			if (response.ok) {
+				const data = await response.json();
+				$questions = data.data;
+				goto('/trivia-layout');
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
-    }
+	async function handleMostDifficult() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/difficulty`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				$questions = data.data;
+				goto('/trivia-layout');
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
+	async function handleMostPopular() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/popular`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				$questions = data.data;
+				goto('/trivia-layout');
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function handleMostLiked() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/most-liked`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				$questions = data.data;
+				goto('/trivia-layout');
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function handleLeastAnswered() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/least-answered`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				$questions = data.data;
+				goto('/trivia-layout');
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function handledRandomQuestions() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/random?count=25`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				$questions = data.data;
+				goto('/trivia-layout');
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
 </script>
 
 <div class="w-full px-12">
-    <h2 class="w-full mb-8 text-2xl font-semibold text-center text-primary">Available Quizzes</h2>
-    {#if availableQuizzes.length > 0}
-        <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
-            {#each availableQuizzes as quiz}
-                <div class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300">
-                    <button on:click={() => handleQuizClick(quiz.name)} class='text-xl font-medium text-left text-primary'>{quiz.name}</button>
-                    <a href={quiz.link} target="_blank" class="link link-info link-hover">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="w-6 h-6 stroke-info shrink-0">
-                            <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </a>
-                </div>
-            {/each}
-        </div>
-    {:else}
-        <p>No quizzes available</p>
-    {/if}
+	<h2 class="w-full mb-8 text-2xl font-semibold text-center text-primary">Available Quizzes</h2>
+	<p class="mb-4 text-center">
+		Select a quiz to test your knowledge! You can choose to select from some randomized quizzes
+		which include 25 questions that are calculated to be either Most Popular, Most Difficult, Most
+		Liked, or Least Answered. You can also choose to take a quiz with 25 completely random
+		questions. Additionally, you can choose from any of the topics at the bottom for a more directed
+		quiz!
+	</p>
+	<div class="flex flex-row flex-wrap items-center justify-center gap-4">
+		<button on:click={() => handleMostDifficult()} class="btn btn-primary text-base-100 btn-wide"
+			>Most Difficult</button
+		>
+		<button on:click={() => handleMostPopular()} class="btn btn-primary text-base-100 btn-wide"
+			>Most Popular</button
+		>
+		<button on:click={() => handleMostLiked()} class="btn btn-primary text-base-100 btn-wide"
+			>Most Liked</button
+		>
+		<button on:click={() => handleLeastAnswered()} class="btn btn-primary text-base-100 btn-wide"
+			>Least Answered</button
+		>
+		<button on:click={() => handledRandomQuestions()} class="btn btn-primary text-base-100 btn-wide"
+			>Random Questions</button
+		>
+	</div>
+	{#if availableQuizzes.length > 0}
+		<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
+			{#each availableQuizzes as quiz}
+				<div
+					class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300"
+				>
+					<button
+						on:click={() => handleQuizClick(quiz.name)}
+						class="text-xl font-medium text-left text-primary">{quiz.name}</button
+					>
+					<a href={quiz.link} target="_blank" class="link link-info link-hover">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							class="w-6 h-6 stroke-info shrink-0"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+							></path>
+						</svg>
+					</a>
+				</div>
+			{/each}
+		</div>
+	{:else}
+		<p>No quizzes available</p>
+	{/if}
 </div>
