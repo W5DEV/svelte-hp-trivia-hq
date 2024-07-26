@@ -121,7 +121,7 @@
 
 <div class="w-full px-12">
 	<h2 class="w-full mb-8 text-2xl font-semibold text-center text-primary">Available Quizzes</h2>
-	<p class="mb-4 text-center">
+	<p class="mb-4 text-center text-secondary">
 		Select a quiz to test your knowledge! You can choose to select from some randomized quizzes
 		which include 25 questions that are calculated to be either Most Popular, Most Difficult, Most
 		Liked, or Least Answered. You can also choose to take a quiz with 25 completely random
