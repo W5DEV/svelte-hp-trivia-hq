@@ -92,9 +92,9 @@
         } else {
             return question.question_origin === filter;
         }
+    }).sort((a, b) => {
+        return a.created_at.localeCompare(b.created_at);
     });
-    $: console.log(filteredQuestions);
-    $: console.log(filter);
 </script>
 <section class="flex items-center justify-center font-medium text-secondary">
     <div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
