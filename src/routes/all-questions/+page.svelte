@@ -109,6 +109,11 @@
                     {/each}
                 </select>
             </div>
+            <div class="flex flex-row items-center justify-center">
+                <div class="flex flex-row items-center justify-center gap-2">
+                    <div class="text-xl font-medium collapse-title text-primary">Number of questions: {filteredQuestions.length}</div>
+                </div>
+            </div>
             <div class="w-full join join-vertical">
                 {#each filteredQuestions as question, i}
                     <div class="flex flex-row items-start justify-start gap-2">
