@@ -18,9 +18,9 @@ npm run dev
 
 ## Roadmap
 
-- [] Add all initial questions to the database
-- [] Create table to display current questions
-- [] Create simple multiple choice quiz with random questions
-- [] Style question/answer format with parchment paper background
-- [] Create question groups for different categories/tags
-- [] Add high score tracking (per session)
+- [ ] Add all initial questions to the database
+- [x] Create grid to display question topics (and question lists in backend portal)
+- [x] Connect endpoints for questions (Random, Hardest, Least Viewed, Topical, etc)
+- [x] Style question/answer format with parchment paper background
+- [ ] Create question groups for different categories/tags
+- [ ] Create "Endless Mode" with High Score Tracker (Number of questions correct in a row)
