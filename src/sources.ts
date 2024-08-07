@@ -88,12 +88,12 @@ export const question_origins: Origin[] = [
 	{
 		name: 'The ULTIMATE Marauders Harry Potter Trivia Quiz',
 		link: 'https://youtu.be/Zfl4OcheyJo?si=cdUHnuMcDfgtNFrg',
-		active: false
+		active: true
 	},
 	{
 		name: 'The ULTIMATE Harry Potter Valentines Day Quiz',
 		link: 'https://youtu.be/xysorxruywM?si=dg7qkZxVZUYrJPzE',
-		active: false
+		active: true
 	},
 	{
 		name: 'The ULTIMATE Harry Potter Defense Against The Dark Arts Quiz',
