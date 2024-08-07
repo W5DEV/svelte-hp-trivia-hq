@@ -10,9 +10,9 @@ export default {
 				'gryffindor-red': '#740001',
 				'gryffindor-gold': '#D3A625',
 				'hufflepuff-yellow': '#ecb939',
-				'hufflepuff-black': '#372e29',
+				'hufflepuff-brown': '#372e29',
 				'ravenclaw-blue': '#222f5b',
-				'ravenclaw-silver': '#bebebe',
+				'ravenclaw-bronze': '#946B2D',
 				'slytherin-green': '#1a472a',
 				'slytherin-silver': '#bebebe'
 			}
@@ -58,7 +58,7 @@ export default {
 				},
 				gryffindorDark: {
 					primary: '#d3a625',
-					secondary: '#bebebe',
+					secondary: '#ebebeb',
 					accent: '#D3A625',
 					neutral: '#740001',
 					'base-100': '#740001',
@@ -79,12 +79,12 @@ export default {
 					error: '#cc0000'
 				},
 				ravenclawDark: {
-					primary: '#bebebe',
-					secondary: '#bebebe',
-					accent: '#bebebe',
+					primary: '#946B2D',
+					secondary: '#ebebeb',
+					accent: '#946B2D',
 					neutral: '#222f5b',
 					'base-100': '#222f5b',
-					info: '#222f5b',
+					info: '#946B2D',
 					success: '#4bb534',
 					warning: '#ecb939',
 					error: '#cc0000'
@@ -124,7 +124,7 @@ export default {
 				},
 				slytherinDark: {
 					primary: '#bebebe',
-					secondary: '#bebebe',
+					secondary: '#ebebeb',
 					accent: '#bebebe',
 					neutral: '#1a472a',
 					'base-100': '#1a472a',

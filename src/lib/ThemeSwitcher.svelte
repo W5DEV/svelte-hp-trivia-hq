@@ -19,7 +19,7 @@
     });
 </script>
 
-<div class="flex items-center justify-center w-screen px-0 m-0 rounded-none join join-horizontal text-caveat">
+<div class="flex flex-wrap items-center justify-center w-screen px-0 m-0 rounded-none join join-horizontal text-caveat">
     <input
     type="radio"
     name="theme-buttons"
@@ -37,7 +37,7 @@
     <input
     type="radio"
     name="theme-buttons"
-    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-ravenclaw-blue text-ravenclaw-silver"
+    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-ravenclaw-blue text-ravenclaw-bronze"
     aria-label="Ravenclaw"
     checked={$theme === "ravenclawLight"}
     value="ravenclawLight" />
@@ -47,7 +47,34 @@
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-slytherin-green text-slytherin-silver"
     aria-label="Slytherin"
     checked={$theme === "slytherinLight"}
-    value="slytherinLight" />
+    value="slytherinLight" /><input
+    type="radio"
+    name="theme-buttons"
+    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-gryffindor-gold text-gryffindor-red"
+    aria-label="Gryffindor"
+    checked={$theme === "gryffindorDark"}
+    value="gryffindorDark" />
+    <input
+    type="radio"
+    name="theme-buttons"
+    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-hufflepuff-brown text-hufflepuff-yellow"
+    aria-label="Hufflepuff"
+    checked={$theme === "hufflepuffDark"}
+    value="hufflepuffDark" />
+    <input
+    type="radio"
+    name="theme-buttons"
+    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-ravenclaw-bronze text-ravenclaw-blue"
+    aria-label="Ravenclaw"
+    checked={$theme === "ravenclawDark"}
+    value="ravenclawDark" />
+    <input
+    type="radio"
+    name="theme-buttons"
+    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-slytherin-silver text-slytherin-green"
+    aria-label="Slytherin"
+    checked={$theme === "slytherinDark"}
+    value="slytherinDark" />
 </div>
 
 <style>
