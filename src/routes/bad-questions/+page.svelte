@@ -154,7 +154,7 @@
                                         {#if question.difficulty}
                                             <span class={question.difficulty < 26 ? `text-error` : question.difficulty < 76 ? `text-warning` : `text-success`}>{100 - question.difficulty}</span>
                                         {:else}
-                                            <span class="text-neutral">No Data</span>
+                                            <span class="text-primary">No Data</span>
                                         {/if}
                                     </div>
                                 </div>
