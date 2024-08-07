@@ -25,24 +25,28 @@
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-gryffindor-red text-gryffindor-gold"
     aria-label="Gryffindor"
+    checked={$theme === "gryffindorLight"}
     value="gryffindorLight" />
     <input
     type="radio"
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-hufflepuff-yellow text-hufflepuff-brown"
     aria-label="Hufflepuff"
+    checked={$theme === "hufflepuffLight"}
     value="hufflepuffLight" />
     <input
     type="radio"
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-ravenclaw-blue text-ravenclaw-silver"
     aria-label="Ravenclaw"
+    checked={$theme === "ravenclawLight"}
     value="ravenclawLight" />
     <input
     type="radio"
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-slytherin-green text-slytherin-silver"
     aria-label="Slytherin"
+    checked={$theme === "slytherinLight"}
     value="slytherinLight" />
 </div>
 
