@@ -3,6 +3,7 @@
     import hufflepuffLogo from "../lib/images/hp-trivia-logo-hufflepuff-yellow.svg";
     import ravenclawLogo from "../lib/images/hp-trivia-logo-ravenclaw-blue.svg";
     import slytherinLogo from "../lib/images/hp-trivia-logo-slytherin-green.svg";
+    import defaultLogo from "../lib/images/hp-trivia-logo.svg";
     import { theme } from "../store";
     import { onMount } from "svelte";
 
@@ -24,6 +25,8 @@
         logo = ravenclawLogo;
     } else if ($theme === "slytherinLight") {
         logo = slytherinLogo;
+    } else {
+        logo = defaultLogo;
     }
 
 
