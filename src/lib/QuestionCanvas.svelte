@@ -62,8 +62,8 @@
     <div class="flex flex-col items-center justify-between w-screen max-w-4xl gap-6 px-10 md:px-28 py-16 min-h-[600px] h-content" style="background-image: url({parchment}); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="relative w-full -mr-10">
             <div class="absolute top-0 right-0 flex flex-row items-center justify-center gap-2">
-                <p class="mr-1 text-2xl font-medium text-neutral">Difficulty: </p>
-                <span class={'text-2xl font-semi-bold text-neutral ' + (difficulty < 4 ? 'text-green-600' : difficulty > 7 ? 'text-red-600' : 'text-yellow-400')}>
+                <p class="mr-1 text-2xl font-medium text-gryffindor-red">Difficulty: </p>
+                <span class={'text-2xl font-semi-bold text-gryffindor-red ' + (difficulty < 4 ? 'text-green-600' : difficulty > 7 ? 'text-red-600' : 'text-yellow-400')}>
                     {difficulty}/10
                 </span>
                 <span class={(difficulty < 4 ? 'text-green-600' : difficulty > 7 ? 'text-red-600' : 'text-yellow-400')}>
@@ -74,34 +74,34 @@
             </div>
         </div>
         <div class="flex flex-col items-center justify-center w-full gap-4 text-left">
-            <h2 class="text-3xl font-semibold text-neutral">Question {questionNumber} of {totalQuestions}:</h2>
-            <h2 class="w-full text-4xl font-semibold text-left text-neutral">{question.type === "multi-select" ? "Select all that apply: " : question.type === "true-false" ? "True or False: "  : ""}{question.question}</h2>
+            <h2 class="text-3xl font-semibold text-gryffindor-red">Question {questionNumber} of {totalQuestions}:</h2>
+            <h2 class="w-full text-4xl font-semibold text-left text-gryffindor-red">{question.type === "multi-select" ? "Select all that apply: " : question.type === "true-false" ? "True or False: "  : ""}{question.question}</h2>
         </div>
         {#if question.type === 'multi-select'}
             <div class="flex flex-col items-start justify-center w-full gap-4 text-left">
                 {#each displayedAnswers as option, i}
-                    <button on:click={() => handleMultiSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-secondary font-semibold text-3xl hover:italic px-4` : `text-left text-neutral font-semibold text-3xl hover:bg-transparent hover:italic px-4`}>
+                    <button on:click={() => handleMultiSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-slytherin-green font-semibold text-3xl hover:italic px-4` : `text-left text-gryffindor-red font-semibold text-3xl hover:bg-transparent hover:italic px-4`}>
                         <p>{alphabetArray[i].toUpperCase()}. {option.answer}</p>
                     </button>
                 {/each}
             </div>
             <div class="flex flex-row items-center justify-center w-full">
-                <button on:click={() => handleAnswer()} class="text-4xl btn btn-ghost btn-wide text-neutral hover:text-secondary hover:bg-transparent">Next</button>
+                <button on:click={() => handleAnswer()} class="text-4xl btn btn-ghost btn-wide text-gryffindor-red hover:text-slytherin-green hover:bg-transparent">Next</button>
             </div>
         {:else}
             <div class="flex flex-col items-start justify-center w-full gap-4 text-left">
                 {#each displayedAnswers as option, i}
-                    <button on:click={() => handleSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-secondary font-semibold text-3xl hover:italic px-4` : `text-left text-neutral font-semibold text-3xl hover:bg-transparent hover:italic px-4`}>
+                    <button on:click={() => handleSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-slytherin-green font-semibold text-3xl hover:italic px-4` : `text-left text-gryffindor-red font-semibold text-3xl hover:bg-transparent hover:italic px-4`}>
                         <p>{alphabetArray[i].toUpperCase()}. {option.answer}</p>
                     </button>
                 {/each}
             </div>
             <div class="flex flex-row items-center justify-center w-full">
-                <button on:click={() => handleAnswer()} class="text-4xl btn btn-ghost btn-wide text-neutral hover:text-secondary hover:bg-transparent">Next</button>
+                <button on:click={() => handleAnswer()} class="text-4xl btn btn-ghost btn-wide text-gryffindor-red hover:text-slytherin-green hover:bg-transparent">Next</button>
             </div>
         {/if}
         <div class="flex flex-row items-end justify-end w-full top-10 right-10">
-            <a href={getOriginLink()} class="text-sm font-medium tooltip tooltip-left text-neutral" data-tip={question.question_origin}>
+            <a href={getOriginLink()} class="text-sm font-medium tooltip tooltip-left text-gryffindor-red" data-tip={question.question_origin}>
                 <svg xmlns="http://www.w3.org/2000/svg" target="_blank" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                 </svg>

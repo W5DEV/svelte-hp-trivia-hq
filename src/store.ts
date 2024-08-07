@@ -33,3 +33,10 @@ export const questions = writable<Question[]>([]);
 questions.subscribe((val) => {
 	if (browser) return (localStorage.questions = JSON.stringify(val));
 });
+
+export const theme = writable<string>(
+	(browser && localStorage.getItem('theme')) || 'gryffindorLight'
+);
+theme.subscribe((val) => {
+	if (browser) return (localStorage.theme = val);
+});

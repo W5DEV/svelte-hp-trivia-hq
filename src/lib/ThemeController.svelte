@@ -5,12 +5,12 @@
 
 <label class="swap swap-rotate">
   <!-- this hidden checkbox controls the state -->
-  <input type="checkbox" class="theme-controller" value="hpDark" />
+  <input type="checkbox" class="theme-controller" value="defaultDark" />
 
-    <!-- Light Mode Logo - #740001 -->
+    <!-- Light Mode Logo -->
     <img src={logoLight} class="w-56 h-56 swap-off" alt="Light Mode"/>
 
-    <!-- Dark Mode Logo - #D3A625 -->
+    <!-- Dark Mode Logo -->
     <img src={logoDark} class="w-56 h-56 swap-on" alt="Dark Mode"/>
 
   </label>

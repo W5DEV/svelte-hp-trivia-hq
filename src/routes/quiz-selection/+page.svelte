@@ -161,7 +161,7 @@
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                class="w-6 h-6 stroke-info shrink-0"
+                                class="w-6 h-6 stroke-secondary shrink-0"
                             >
                                 <path
                                     stroke-linecap="round"
