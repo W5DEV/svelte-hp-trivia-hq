@@ -1,13 +1,9 @@
 <script lang='ts'>
-	import gryffindorLogoLight from "../lib/images/hp-trivia-logo-gryffindor-red.svg";
-    import hufflepuffLogoLight from "../lib/images/hp-trivia-logo-hufflepuff-brown.svg";
-    import ravenclawLogoLight from "../lib/images/hp-trivia-logo-ravenclaw-blue.svg";
-    import slytherinLogoLight from "../lib/images/hp-trivia-logo-slytherin-green.svg";
+	import gryffindorLogo from "../lib/images/hp-trivia-logo-gryffindor-red.svg";
+    import hufflepuffLogo from "../lib/images/hp-trivia-logo-hufflepuff-yellow.svg";
+    import ravenclawLogo from "../lib/images/hp-trivia-logo-ravenclaw-blue.svg";
+    import slytherinLogo from "../lib/images/hp-trivia-logo-slytherin-green.svg";
     import defaultLogo from "../lib/images/hp-trivia-logo.svg";
-    import gryffindorLogoDark from "../lib/images/hp-trivia-logo-gryffindor-gold.svg";
-    import hufflepuffLogoDark from "../lib/images/hp-trivia-logo-hufflepuff-yellow.svg";
-    import ravenclawLogoDark from "../lib/images/hp-trivia-logo-ravenclaw-bronze.svg";
-    import slytherinLogoDark from "../lib/images/hp-trivia-logo-slytherin-silver.svg";
     import { theme } from "../store";
     import { onMount } from "svelte";
 
@@ -21,22 +17,14 @@
 
     // Set the logo based on the theme
     let logo = defaultLogo;
-    $: if ($theme === "gryffindorLight") {
-        logo = gryffindorLogoLight;
-    } else if ($theme === "hufflepuffLight") {
-        logo = hufflepuffLogoLight;
-    } else if ($theme === "ravenclawLight") {
-        logo = ravenclawLogoLight;
-    } else if ($theme === "slytherinLight") {
-        logo = slytherinLogoLight;
-    } else if ($theme === "gryffindorDark") {
-        logo = gryffindorLogoDark;
-    } else if ($theme === "hufflepuffDark") {
-        logo = hufflepuffLogoDark;
-    } else if ($theme === "ravenclawDark") {
-        logo = ravenclawLogoDark;
-    } else if ($theme === "slytherinDark") {
-        logo = slytherinLogoDark;
+    $: if ($theme === "gryffindor") {
+        logo = gryffindorLogo;
+    } else if ($theme === "hufflepuff") {
+        logo = hufflepuffLogo;
+    } else if ($theme === "ravenclaw") {
+        logo = ravenclawLogo;
+    } else if ($theme === "slytherin") {
+        logo = slytherinLogo;
     } else {
         logo = defaultLogo;
     }

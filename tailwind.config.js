@@ -23,7 +23,7 @@ export default {
 	daisyui: {
 		themes: [
 			{
-				defaultLight: {
+				default: {
 					primary: '#000000',
 					secondary: '#000000',
 					accent: '#000000',
@@ -34,18 +34,7 @@ export default {
 					warning: '#ecb939',
 					error: '#cc0000'
 				},
-				defaultDark: {
-					primary: '#ffffff',
-					secondary: '#ffffff',
-					accent: '#ffffff',
-					neutral: '#ffffff',
-					'base-100': '#000000',
-					info: '#ffffff',
-					success: '#4bb534',
-					warning: '#ecb939',
-					error: '#cc0000'
-				},
-				gryffindorLight: {
+				gryffindor: {
 					primary: '#740001',
 					secondary: '#D3A625',
 					accent: '#740001',
@@ -56,18 +45,7 @@ export default {
 					warning: '#ecb939',
 					error: '#cc0000'
 				},
-				gryffindorDark: {
-					primary: '#d3a625',
-					secondary: '#ebebeb',
-					accent: '#D3A625',
-					neutral: '#740001',
-					'base-100': '#740001',
-					info: '#740001',
-					success: '#4bb534',
-					warning: '#ecb939',
-					error: '#cc0000'
-				},
-				ravenclawLight: {
+				ravenclaw: {
 					primary: '#222f5b',
 					secondary: '#946B2D',
 					accent: '#222f5b',
@@ -78,57 +56,24 @@ export default {
 					warning: '#ecb939',
 					error: '#cc0000'
 				},
-				ravenclawDark: {
-					primary: '#946B2D',
-					secondary: '#ebebeb',
-					accent: '#946B2D',
-					neutral: '#222f5b',
-					'base-100': '#222f5b',
-					info: '#946B2D',
-					success: '#4bb534',
-					warning: '#ecb939',
-					error: '#cc0000'
-				},
-				hufflepuffLight: {
-					primary: '#ecb939',
-					secondary: '#372e29',
-					accent: '#ecb939',
-					neutral: '#ecb939',
-					'base-100': '#ffffff',
-					info: '#ecb939',
-					success: '#4bb534',
-					warning: '#ecb939',
-					error: '#cc0000'
-				},
-				hufflepuffDark: {
+				hufflepuff: {
 					primary: '#ecb939',
 					secondary: '#bebebe',
 					accent: '#ecb939',
 					neutral: '#ecb939',
-					'base-100': '#372e29',
+					'base-100': '#171717',
 					info: '#ecb939',
 					success: '#4bb534',
 					warning: '#ecb939',
 					error: '#cc0000'
 				},
-				slytherinLight: {
-					primary: '#1a472a',
-					secondary: '#5d5d5d',
-					accent: '#1a472a',
-					neutral: '#1a472a',
-					'base-100': '#ffffff',
-					info: '#1a472a',
-					success: '#4bb534',
-					warning: '#ecb939',
-					error: '#cc0000'
-				},
-				slytherinDark: {
-					primary: '#bebebe',
-					secondary: '#ebebeb',
+				slytherin: {
+					primary: '#2a623d',
+					secondary: '#bebebe',
 					accent: '#bebebe',
-					neutral: '#1a472a',
-					'base-100': '#1a472a',
-					info: '#1a472a',
+					neutral: '#2a623d',
+					'base-100': '#121212',
+					info: '#2a623d',
 					success: '#4bb534',
 					warning: '#ecb939',
 					error: '#cc0000'

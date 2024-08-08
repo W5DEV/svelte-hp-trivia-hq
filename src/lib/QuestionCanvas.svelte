@@ -60,13 +60,13 @@
 
 <div class="flex items-center justify-center w-screen font-caveat">
     <div class="flex flex-col items-center justify-between w-screen max-w-4xl gap-6 px-10 md:px-28 py-16 min-h-[600px] h-content" style="background-image: url({parchment}); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <div class="relative w-full -mr-10">
-            <div class="absolute top-0 right-0 flex flex-row items-center justify-center gap-2">
+        <div class="flex items-center flex-center">
+            <div class="flex flex-row items-center justify-center gap-2">
                 <p class="mr-1 text-2xl font-medium text-gryffindor-red">Difficulty: </p>
-                <span class={'text-2xl font-semi-bold text-gryffindor-red ' + (difficulty < 4 ? 'text-green-600' : difficulty > 7 ? 'text-red-600' : 'text-yellow-400')}>
+                <span class={'text-2xl font-extrabold ' + (difficulty < 4 ? 'text-green-600' : difficulty > 6 ? 'text-red-600' : 'text-yellow-400')}>
                     {difficulty}/10
                 </span>
-                <span class={(difficulty < 4 ? 'text-green-600' : difficulty > 7 ? 'text-red-600' : 'text-yellow-400')}>
+                <span class={(difficulty < 4 ? 'text-green-600' : difficulty > 6 ? 'text-red-600' : 'text-yellow-400')}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="none" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
                     </svg>
@@ -75,12 +75,12 @@
         </div>
         <div class="flex flex-col items-center justify-center w-full gap-4 text-left">
             <h2 class="text-3xl font-semibold text-gryffindor-red">Question {questionNumber} of {totalQuestions}:</h2>
-            <h2 class="w-full text-4xl font-semibold text-left text-gryffindor-red">{question.type === "multi-select" ? "Select all that apply: " : question.type === "true-false" ? "True or False: "  : ""}{question.question}</h2>
+            <h2 class="w-full text-4xl font-light text-left text-gryffindor-red"><strong class="font-extrabold underline">{question.type === "multi-select" ? "Select all that apply:" : question.type === "true-false" ? "True or False:"  : ""}</strong> {question.question}</h2>
         </div>
         {#if question.type === 'multi-select'}
-            <div class="flex flex-col items-start justify-center w-full gap-4 text-left">
+            <div class="flex flex-col items-start justify-center w-full gap-4 font-light text-left">
                 {#each displayedAnswers as option, i}
-                    <button on:click={() => handleMultiSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-slytherin-green font-semibold text-3xl hover:italic px-4` : `text-left text-gryffindor-red font-semibold text-3xl hover:bg-transparent hover:italic px-4`}>
+                    <button on:click={() => handleMultiSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-slytherin-green font-light text-3xl hover:italic px-4` : `text-left text-gryffindor-red font-light text-3xl hover:bg-transparent hover:italic px-4`}>
                         <p>{alphabetArray[i].toUpperCase()}. {option.answer}</p>
                     </button>
                 {/each}
@@ -89,9 +89,9 @@
                 <button on:click={() => handleAnswer()} class="text-4xl btn btn-ghost btn-wide text-gryffindor-red hover:text-slytherin-green hover:bg-transparent">Next</button>
             </div>
         {:else}
-            <div class="flex flex-col items-start justify-center w-full gap-4 text-left">
+            <div class="flex flex-col items-start justify-center w-full gap-4 font-light text-left">
                 {#each displayedAnswers as option, i}
-                    <button on:click={() => handleSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-slytherin-green font-semibold text-3xl hover:italic px-4` : `text-left text-gryffindor-red font-semibold text-3xl hover:bg-transparent hover:italic px-4`}>
+                    <button on:click={() => handleSelection(option, i)} class={displayedAnswers[i].selected ? `text-left text-slytherin-green font-light text-3xl hover:italic px-4` : `text-left text-gryffindor-red font-light text-3xl hover:bg-transparent hover:italic px-4`}>
                         <p>{alphabetArray[i].toUpperCase()}. {option.answer}</p>
                     </button>
                 {/each}

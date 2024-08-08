@@ -25,56 +25,29 @@
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-gryffindor-red text-gryffindor-gold"
     aria-label="Gryffindor"
-    checked={$theme === "gryffindorLight"}
-    value="gryffindorLight" />
+    checked={$theme === "gryffindor"}
+    value="gryffindor" />
     <input
     type="radio"
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-hufflepuff-yellow text-hufflepuff-brown"
     aria-label="Hufflepuff"
-    checked={$theme === "hufflepuffLight"}
-    value="hufflepuffLight" />
+    checked={$theme === "hufflepuff"}
+    value="hufflepuff" />
     <input
     type="radio"
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-ravenclaw-blue text-ravenclaw-bronze"
     aria-label="Ravenclaw"
-    checked={$theme === "ravenclawLight"}
-    value="ravenclawLight" />
+    checked={$theme === "ravenclaw"}
+    value="ravenclaw" />
     <input
     type="radio"
     name="theme-buttons"
     class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-slytherin-green text-slytherin-silver"
     aria-label="Slytherin"
-    checked={$theme === "slytherinLight"}
-    value="slytherinLight" /><input
-    type="radio"
-    name="theme-buttons"
-    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-gryffindor-gold text-gryffindor-red"
-    aria-label="Gryffindor"
-    checked={$theme === "gryffindorDark"}
-    value="gryffindorDark" />
-    <input
-    type="radio"
-    name="theme-buttons"
-    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-hufflepuff-brown text-hufflepuff-yellow"
-    aria-label="Hufflepuff"
-    checked={$theme === "hufflepuffDark"}
-    value="hufflepuffDark" />
-    <input
-    type="radio"
-    name="theme-buttons"
-    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-ravenclaw-bronze text-ravenclaw-blue"
-    aria-label="Ravenclaw"
-    checked={$theme === "ravenclawDark"}
-    value="ravenclawDark" />
-    <input
-    type="radio"
-    name="theme-buttons"
-    class="w-1/4 rounded-none checked:border-none new-btn theme-controller bg-slytherin-silver text-slytherin-green"
-    aria-label="Slytherin"
-    checked={$theme === "slytherinDark"}
-    value="slytherinDark" />
+    checked={$theme === "slytherin"}
+    value="slytherin" />
 </div>
 
 <style>
