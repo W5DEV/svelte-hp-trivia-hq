@@ -129,7 +129,7 @@
         {#if questions && questions.length > 0}
             <div class="flex flex-row items-center justify-center w-full">
                 <div class="flex flex-col items-center justify-center gap-6 text-center">
-                    <h1 class="text-3xl font-medium text-primary">Bad Questions</h1>
+                    <h1 class="text-3xl font-medium text-primary">Questions Not Cited Properly</h1>
                     <button on:click={() => goto('/dashboard')} class="btn btn-primary btn-xl btn-wide text-base-100">Dashboard</button>
                     <div class="text-xl font-medium text-primary">Number of questions: {notCitedQuestions.length}</div>
                 </div>
