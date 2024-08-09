@@ -58,7 +58,7 @@
 			source: $form.source.value,
 			tags: $form.tags.value.split(',').map((tag) => tag.trim()),
 			type: 'multi-select',
-			correct_answer: $form.correct_answer.value.split('\n').map((answer) => answer.trim()).toLocaleString(),
+			correct_answer: $form.correct_answer.value,
             completed: $form.completed.value ? 'true' : 'false',
             question_origin: $form.question_origin.value
 		};

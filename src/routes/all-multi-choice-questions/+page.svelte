@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import { token, current_question } from "../../store";
 	import { goto } from "$app/navigation";
+	import { question_origins } from "../../sources";
 
    type Question = {
         id: string;
@@ -24,6 +25,30 @@
     onMount(() => {
         getUser();
     });
+
+    let availableTags: string[] = [];
+
+	async function fetchAvailableTags() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tags`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				data.data = data.data.filter((tag: string) => tag !== '');
+				availableTags = data.data;
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving tags.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	fetchAvailableTags();
+
+    const sources = question_origins.filter((origin) => origin.active === true);
 
     const newToken = $token;
 
@@ -55,8 +80,7 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.data);
-                questions = data.data;
+                questions = data.data.filter((question: Question) => question.type === 'multi-choice');
             } else {
                 console.log(response);
                 alert(response.status + ': Error retrieving questions.');
@@ -65,8 +89,6 @@
             console.error(error);
         }
     }
-
-    console.log(questions);
 
     function handleEditClick(question: Question) {
         return () => {
@@ -80,35 +102,65 @@
             }
         }
     }
-    
-    $: incorrectQuestions = questions.filter((question) => {
-        const possibleAnswers = question.answers;
-        const correctAnswers = question.correct_answer.split('\n');
+    let filter: HTMLSelectElement | string;
+    let filteredQuestions = questions;
 
-        // Check if all correct answers are included in possible answers
-        for (let i = 0; i < correctAnswers.length; i++) {
-            if (!possibleAnswers.includes(correctAnswers[i])) {
-                return true; 
-            }
+    $: filteredQuestions = questions.filter((question) => {
+        if (filter === 'all') {
+            return true;
+        } else {
+            return question.question_origin === filter;
         }
-        return false;
+    }).sort((a, b) => {
+        return a.created_at.localeCompare(b.created_at);
     });
 
-
+    let tagFilter: string;
+    
+    $: filteredQuestions = questions.filter((question) => {
+        if (tagFilter === 'all') {
+            return true;
+        } else {
+            return question.tags.includes(tagFilter);
+        }
+    }).sort((a, b) => {
+        return a.created_at.localeCompare(b.created_at);
+    });
 </script>
 <section class="flex items-center justify-center font-medium text-secondary">
     <div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
         {#if questions && questions.length > 0}
-            <div class="flex flex-row items-center justify-center w-full">
-                <div class="flex flex-col items-center justify-center gap-6 text-center">
-                    <h1 class="text-3xl font-medium text-primary">Bad Questions</h1>
-                    <button on:click={() => goto('/dashboard')} class="btn btn-primary btn-xl btn-wide text-base-100">Dashboard</button>
-                    <div class="text-xl font-medium text-primary">Number of questions: {incorrectQuestions.length}</div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+                <a href="/dashboard" class="btn btn-primary text-base-100 btn-wide">Dashboard</a>
+                <a href="/sources" class="btn btn-primary text-base-100 btn-wide">Sources</a>
+            </div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+                <select class="select select-bordered select-primary select-sm" bind:value={filter}>
+                    <option value="all">All</option>
+                    {#each sources as source}
+                        <option value={source.name}>{source.name}</option>
+                    {/each}
+                </select>
+            </div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+                <select class="select select-bordered select-primary select-sm" bind:value={tagFilter}>
+                    <option value="all">All</option>
+                    {#each availableTags as tag}
+                        <option value={tag}>{tag}</option>
+                    {/each}
+                </select>
+            </div>
+            <div class="flex flex-row items-center justify-center">
+                <div class="flex flex-row items-center justify-center gap-2">
+                    <div class="text-xl font-medium collapse-title text-primary">Number of questions: {filteredQuestions.length}</div>
                 </div>
             </div>
             <div class="w-full join join-vertical">
-                {#each incorrectQuestions as question, i}
+                {#each filteredQuestions as question, i}
                     <div class="flex flex-row items-start justify-start gap-2">
+                        {#if tagFilter && filter && (filter !== 'all' || tagFilter !== 'all')}
+                            <span class="w-10 ml-10 text-xl">{i + 1}.</span>
+                        {/if}
                         <div class="border collapse collapse-arrow join-item border-base-300">
                             <input type="radio" name="my-accordion-4" />
                                 <div class={question.completed === "true" ? `text-xl font-medium collapse-title text-success` : `text-xl font-medium collapse-title text-error`}>{question.question}</div>

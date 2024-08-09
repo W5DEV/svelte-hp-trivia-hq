@@ -198,7 +198,7 @@
                                 <div class="flex flex-col">
                                     <p class="text-tertiary">Correct Answer:</p>
                                     <div class="flex flex-row items-center justify-start gap-1">
-                                        <span class="text-primary">{question.correct_answer}</span>
+                                        <span class="text-primary">{question.correct_answer.split('\n').join(', ')}</span>
                                     </div>
                                 </div>
                                 <div class="flex flex-row gap-4">
@@ -218,6 +218,16 @@
                                             <span class="text-success">{question.likes}</span>
                                         {:else}
                                             <span class="text-error">0</span>
+                                        {/if}
+                                    </div>
+                                </div>
+                                <div class="flex flex-row gap-4">
+                                    <p class="text-tertiary">Dislikes:</p>
+                                    <div class="flex flex-row items-center justify-start gap-1">
+                                        {#if question.likes}
+                                            <span class="text-error">{question.likes}</span>
+                                        {:else}
+                                            <span class="text-primary">0</span>
                                         {/if}
                                     </div>
                                 </div>

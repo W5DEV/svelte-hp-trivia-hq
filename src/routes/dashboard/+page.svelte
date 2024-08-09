@@ -55,7 +55,6 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.data);
                 questions = data.data;
             } else {
                 console.log(response);
@@ -65,8 +64,6 @@
             console.error(error);
         }
     }
-
-    console.log(questions);
 
     function handleEditClick(question: Question) {
         return () => {
@@ -88,6 +85,11 @@
                 <a href="/add-multichoice" class="btn btn-primary text-base-100 btn-wide">Add Multiple Choice Question</a>
                 <a href="/add-truefalse" class="btn btn-primary text-base-100 btn-wide">Add True/False Question</a>
                 <a href="/add-multiselect" class="btn btn-primary text-base-100 btn-wide">Add Multiple Select Question</a>
+            </div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+                <a href="/all-multi-choice-questions" class="btn btn-primary text-base-100 btn-wide">All Multiple Choice Questions</a>
+                <a href="/all-true-false-questions" class="btn btn-primary text-base-100 btn-wide">All True/False Questions</a>
+                <a href="/all-multi-select-questions" class="btn btn-primary text-base-100 btn-wide">All Multiple Select Questions</a>
             </div>
             <div class="flex flex-row flex-wrap items-center justify-center gap-4">
                 <a href="/all-questions" class="btn btn-primary text-base-100 btn-wide">Full Question List</a>
@@ -136,7 +138,7 @@
                             <div class="flex flex-col">
                                 <p class="text-tertiary">Correct Answer:</p>
                                 <div class="flex flex-row items-center justify-start gap-1">
-                                    <span class="text-primary">{question.correct_answer}</span>
+                                    <span class="text-primary">{question.correct_answer.split('\n').join(', ')}</span>
                                 </div>
                             </div>
                             <div class="flex flex-row gap-4">
@@ -159,6 +161,16 @@
                                     {/if}
                                 </div>
                             </div>
+                                <div class="flex flex-row gap-4">
+                                    <p class="text-tertiary">Dislikes:</p>
+                                    <div class="flex flex-row items-center justify-start gap-1">
+                                        {#if question.likes}
+                                            <span class="text-error">{question.likes}</span>
+                                        {:else}
+                                            <span class="text-primary">0</span>
+                                        {/if}
+                                    </div>
+                                </div>
                             <div class="flex flex-row items-center justify-end w-full"><button on:click={handleEditClick(question)} class="btn btn-primary btn-sm text-base-100">Edit</button></div>
                         </div>
                     </div>

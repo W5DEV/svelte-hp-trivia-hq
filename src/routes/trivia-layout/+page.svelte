@@ -25,7 +25,7 @@
 
 	async function handleAnswer(answer: string) {
 		const sortedCorrectAnswers = currentQuestions[currentQuestionIndex].correct_answer
-			.split(',')
+			.split('\n')
 			.sort()
 			.join(', ');
 		const sortedAnswer = answer.split(',').sort().join(', ');
