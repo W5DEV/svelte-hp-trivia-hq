@@ -88,6 +88,8 @@
         // Check if tags include book number if correct_answer is not in bookNames
         if (bookNames.includes(question.correct_answer)) {
             return false;
+        } else if (bookNames.includes(Array.from(question.correct_answer.split('\n'))[0])) {
+            return false;
         } else if (question.tags.includes('book one')) {
             return false;
         } else if (question.tags.includes('book two')) {
