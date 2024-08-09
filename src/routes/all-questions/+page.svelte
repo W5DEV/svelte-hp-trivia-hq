@@ -26,6 +26,28 @@
         getUser();
     });
 
+    let availableTags: string[] = [];
+
+	async function fetchAvailableTags() {
+		try {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tags`, {
+				method: 'GET'
+			});
+			if (response.ok) {
+				const data = await response.json();
+				data.data = data.data.filter((tag: string) => tag !== '');
+				availableTags = data.data;
+			} else {
+				console.log(response);
+				alert(response.status + ': Error retrieving tags.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	fetchAvailableTags();
+
     const sources = question_origins.filter((origin) => origin.active === true);
 
     const newToken = $token;
@@ -69,8 +91,6 @@
         }
     }
 
-    console.log(questions);
-
     function handleEditClick(question: Question) {
         return () => {
             current_question.set(question);
@@ -95,6 +115,18 @@
     }).sort((a, b) => {
         return a.created_at.localeCompare(b.created_at);
     });
+
+    let tagFilter: string;
+    
+    $: filteredQuestions = questions.filter((question) => {
+        if (tagFilter === 'all') {
+            return true;
+        } else {
+            return question.tags.includes(tagFilter);
+        }
+    }).sort((a, b) => {
+        return a.created_at.localeCompare(b.created_at);
+    });
 </script>
 <section class="flex items-center justify-center font-medium text-secondary">
     <div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
@@ -108,6 +140,14 @@
                     <option value="all">All</option>
                     {#each sources as source}
                         <option value={source.name}>{source.name}</option>
+                    {/each}
+                </select>
+            </div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+                <select class="select select-bordered select-primary select-sm" bind:value={tagFilter}>
+                    <option value="all">All</option>
+                    {#each availableTags as tag}
+                        <option value={tag}>{tag}</option>
                     {/each}
                 </select>
             </div>
