@@ -102,6 +102,8 @@
             <div class="flex flex-row flex-wrap items-center justify-center gap-4">
                 <a href="/dashboard" class="btn btn-primary text-base-100 btn-wide">Dashboard</a>
                 <a href="/sources" class="btn btn-primary text-base-100 btn-wide">Sources</a>
+            </div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
                 <select class="select select-bordered select-primary select-sm" bind:value={filter}>
                     <option value="all">All</option>
                     {#each sources as source}
@@ -118,7 +120,7 @@
                 {#each filteredQuestions as question, i}
                     <div class="flex flex-row items-start justify-start gap-2">
                         {#if filter  && filter !== 'all'}
-                            <span class="w-10 -ml-10 text-xl">{i + 1}</span>
+                            <span class="w-10 ml-10 text-xl">{i + 1}.</span>
                         {/if}
                         <div class="border collapse collapse-arrow join-item border-base-300">
                             <input type="radio" name="my-accordion-4" />
