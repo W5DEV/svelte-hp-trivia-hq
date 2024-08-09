@@ -195,7 +195,7 @@
 				{#each availableTags as tag}
 						<button
 							on:click={() => getQuestionsByTag(tag)}
-							class="text-xl font-medium text-left capitalize btn btn-secondary text-primary">{tag}</button
+							class="h-24 text-xl font-medium text-left capitalize btn btn-secondary text-primary">{tag}</button
 						>
 				{/each}
 			</div>
