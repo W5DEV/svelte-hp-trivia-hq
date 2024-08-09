@@ -190,10 +190,20 @@
 			>
 		</div>
 		{#if availableQuizzes.length > 0 || availableTags.length > 0}
+			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Topic</h2>
+			<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
+				{#each availableTags as tag}
+						<button
+							on:click={() => getQuestionsByTag(tag)}
+							class="text-xl font-medium text-left capitalize btn btn-secondary text-primary">{tag}</button
+						>
+				{/each}
+			</div>
+			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Source</h2>
 			<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
 				{#each availableQuizzes as quiz}
 					<div
-						class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-base-300"
+						class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-primary"
 					>
 						<button
 							on:click={() => handleQuizClick(quiz.name)}
@@ -215,14 +225,6 @@
 							</svg>
 						</a>
 					</div>
-				{/each}
-			</div>
-			<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
-				{#each availableTags as tag}
-						<button
-							on:click={() => getQuestionsByTag(tag)}
-							class="text-xl font-medium text-left capitalize btn btn-secondary text-primary">{tag}</button
-						>
 				{/each}
 			</div>
 		{:else}

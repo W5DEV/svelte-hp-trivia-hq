@@ -193,8 +193,8 @@
                 </div>
 			</div>
 
-			<button type="submit" class="btn btn-secondary btn-wide text-base-100" disabled={!$form.valid}>Save</button>
-			<button class="btn btn-primary btn-wide text-base-100" on:click={() => (goto("/dashboard"))}>Cancel</button>
+			<button type="submit" class="btn btn-primary btn-wide text-base-100" disabled={!$form.valid}>Save</button>
+			<button class="btn btn-secondary btn-outline btn-wide text-base-100" on:click={() => (goto("/dashboard"))}>Cancel</button>
 		</form>
 	{/if}
 	{#if showSubmit}

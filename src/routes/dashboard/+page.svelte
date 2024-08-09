@@ -92,8 +92,12 @@
             <div class="flex flex-row flex-wrap items-center justify-center gap-4">
                 <a href="/all-questions" class="btn btn-primary text-base-100 btn-wide">Full Question List</a>
                 <a href="/sources" class="btn btn-primary text-base-100 btn-wide">Sources</a>
-                <a href="/bad-questions" class="btn btn-primary text-base-100 btn-wide">Bad Questions</a>
             </div>
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4">
+                <a href="/bad-questions" class="btn btn-primary text-base-100 btn-wide">Bad Questions</a>
+                <a href="/questions-not-cited" class="btn btn-primary text-base-100 btn-wide">Not Cited</a>
+            </div>
+
             <div class="w-full join join-vertical">
                 {#each questions as question}
                     <div class="border collapse collapse-arrow join-item border-base-300">
