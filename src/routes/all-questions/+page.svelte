@@ -38,7 +38,6 @@
 				data.data = data.data.filter((tag: string) => tag !== '');
 				availableTags = data.data;
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving tags.');
 			}
 		} catch (error) {
@@ -80,10 +79,8 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.data);
                 questions = data.data;
             } else {
-                console.log(response);
                 alert(response.status + ': Error retrieving questions.');
             }
         } catch (error) {

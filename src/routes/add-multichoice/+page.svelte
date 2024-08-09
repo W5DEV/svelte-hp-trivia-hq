@@ -11,7 +11,6 @@
 
 	onMount(() => {
 		getUser();
-        console.log($form.completed.value)
 	});
 
 	const newToken = $token;
@@ -24,9 +23,7 @@
 					Authorization: 'Bearer ' + newToken
 				}
 			});
-			if (response.ok) {
-				console.log('User is logged in');
-			} else {
+			if (!response.ok) {
 				token.set('');
 				goto('/login');
 			}
@@ -82,14 +79,10 @@
 			});
 
 			if (response.ok) {
-				const data = await response.json();
-				console.log(data);
-				console.log('Question added successfully!');
 				setTimeout(() => {
 					goto('/dashboard');
 				}, 1000);
 			} else {
-				console.log(response.status, response.statusText);
 				alert(response.status + ': Invalid data. Please try again.');
                 showSubmit = false;
 			}

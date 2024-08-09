@@ -38,7 +38,6 @@
 				data.data = data.data.filter((tag: string) => tag !== '');
 				availableTags = data.data;
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving tags.');
 			}
 		} catch (error) {
@@ -81,9 +80,7 @@
             if (response.ok) {
                 const data = await response.json();
                 questions = data.data.filter((question: Question) => question.type === 'multi-select');
-                console.log(questions);
             } else {
-                console.log(response);
                 alert(response.status + ': Error retrieving questions.');
             }
         } catch (error) {

@@ -31,7 +31,6 @@
                 token.set(data.token);
                 goto('/dashboard');
             } else {
-                console.log(response.status, response.statusText); 
                 alert(response.status + ': Invalid email or password. Please try again.');
                 showSubmit = false;
             }
@@ -57,9 +56,7 @@
 
             if (response.ok) {
                 goto('/dashboard');
-            } else {
-                console.log(response);
-            }
+            } 
         } catch (error) {
             console.error(error);
         }

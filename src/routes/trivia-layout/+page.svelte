@@ -129,7 +129,6 @@
 		});
 		const result = await response.json();
 		if (result.success) {
-			console.log(result);
 			const updatedQuestion = { ...question, isReported: true };
 
 			questionArray.update((questions) => {

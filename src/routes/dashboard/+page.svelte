@@ -57,7 +57,6 @@
                 const data = await response.json();
                 questions = data.data;
             } else {
-                console.log(response);
                 alert(response.status + ': Error retrieving questions.');
             }
         } catch (error) {

@@ -55,18 +55,14 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.data);
                 questions = data.data;
             } else {
-                console.log(response);
                 alert(response.status + ': Error retrieving questions.');
             }
         } catch (error) {
             console.error(error);
         }
     }
-
-    console.log(questions);
 
     function handleEditClick(question: Question) {
         return () => {

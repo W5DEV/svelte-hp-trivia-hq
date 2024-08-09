@@ -19,7 +19,6 @@
 				data.data = data.data.filter((tag: string) => tag !== '');
 				availableTags = data.data;
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving tags.');
 			}
 		} catch (error) {
@@ -28,8 +27,6 @@
 	}
 
 	fetchAvailableTags();
-
-	$: console.log(availableTags);
 
 	async function getQuestionsByTag(tag: string) {
 		try {
@@ -41,7 +38,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
@@ -62,7 +58,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
@@ -80,7 +75,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
@@ -98,7 +92,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
@@ -116,7 +109,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
@@ -134,7 +126,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
@@ -152,7 +143,6 @@
 				$questions = data.data;
 				goto('/trivia-layout');
 			} else {
-				console.log(response);
 				alert(response.status + ': Error retrieving questions.');
 			}
 		} catch (error) {
