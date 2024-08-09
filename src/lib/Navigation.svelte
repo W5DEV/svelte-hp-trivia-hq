@@ -33,5 +33,7 @@
 
 </script>
 <nav class="flex flex-row items-center justify-center text-primary">
-    <img src={logo} class="w-56 h-56 swap-on fill-primary stroke-primary" alt="Dark Mode"/>
+    <a href="/">
+        <img src={logo} class="w-56 h-56 swap-on fill-primary stroke-primary" alt="Dark Mode"/>
+    </a>
 </nav>
