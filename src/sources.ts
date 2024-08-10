@@ -103,7 +103,7 @@ export const question_origins: Origin[] = [
 	{
 		name: 'The HARDEST Hagrid Trivia Quiz EVER',
 		link: 'https://youtu.be/lnKQ-ELXnH4?si=CeVSF4R2ksfXDfS0',
-		active: false
+		active: true
 	},
 	{
 		name: 'The BIGGEST Harry Potter Trivia Quiz EVER',
