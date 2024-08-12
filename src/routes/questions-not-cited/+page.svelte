@@ -104,6 +104,8 @@
             return false;
         } else if (question.tags.includes('fantastic beasts')) {
             return false;
+        } else if (question.tags.includes('tales of beetle the bard')) {
+            return false;
         } else if (question.tags.includes('general')) {
             return false;
         } else if (question.source === 'pottermore') {
