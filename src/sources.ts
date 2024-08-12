@@ -108,12 +108,12 @@ export const question_origins: Origin[] = [
 	{
 		name: 'The BIGGEST Harry Potter Trivia Quiz EVER',
 		link: 'https://youtu.be/Q61tvcZpCEg?si=gU8DNykVlM5EzJAX',
-		active: false
+		active: true
 	},
 	{
 		name: 'The ULTIMATE Harry Potter Boy Who Lived TRIVIA Quiz',
 		link: 'https://youtu.be/6_3gfQdIfF8?si=fCGEruGfb0-pPaGx',
-		active: false
+		active: true
 	},
 	{
 		name: 'The MOST INSANE Harry Potter Trivia Quiz',
