@@ -104,7 +104,7 @@
             return false;
         } else if (question.tags.includes('fantastic beasts')) {
             return false;
-        } else if (question.tags.includes('tales of beetle the bard')) {
+        } else if (question.tags.includes('tales of beedle the bard')) {
             return false;
         } else if (question.tags.includes('general')) {
             return false;
