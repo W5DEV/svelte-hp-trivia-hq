@@ -10,6 +10,7 @@
         topic: string;
         active: string;
         completed: string;
+        in_progress: string;
         created_at: string;
         updated_at: string;
     }
@@ -37,7 +38,7 @@
         }
     }
 
-    async function handleMarkActive(source: Source) {
+    async function handleToggleActive(source: Source) {
         try {
             const response = await fetch(`http://hp-api.greatidea.dev/api/sources/toggle-active/${source.id}`, {
                 method: 'PUT',
@@ -49,14 +50,14 @@
             if (response.ok) {
                 getSources();
             } else {
-                alert(response.status + ': Error marking source active.');
+                alert(response.status + ': Error toggling source active.');
             }
         } catch (error) {
             console.error(error);
         }
     }
 
-    async function handleMarkCompleted(source: Source) {
+    async function handleToggleCompleted(source: Source) {
         try {
             const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-completed/${source.id}`, {
                 method: 'PUT',
@@ -68,7 +69,26 @@
             if (response.ok) {
                 getSources();
             } else {
-                alert(response.status + ': Error marking source completed.');
+                alert(response.status + ': Error toggling source completed.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function handleToggleInProgress(source: Source) {
+        try {
+            const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-in-progress/${source.id}`, {
+                method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + newToken
+				}
+            });
+            if (response.ok) {
+                getSources();
+            } else {
+                alert(response.status + ': Error toggleing source in progress.');
             }
         } catch (error) {
             console.error(error);
@@ -104,8 +124,9 @@
                             </a>
                         </div>
                         <div class="flex flex-row items-center justify-between w-full">
-                            <button on:click={() => handleMarkActive(source)} class={source.active === "true" ? 'text-success' : 'text-error'}>{source.active === "true" ? "Active" : "Inactive"}</button>
-                            <button on:click={() => handleMarkCompleted(source)} class={source.completed === "true" ? 'text-success' : 'text-error'}>{source.completed === "true" ? "Completed" : "Not Completed"}</button>
+                            <button on:click={() => handleToggleActive(source)} class={source.active === "true" ? 'text-success' : 'text-error'}>{source.active === "true" ? "Active" : "Inactive"}</button>
+                            <button on:click={() => handleToggleInProgress(source)} class={source.in_progress === "true" ? 'text-success' : 'text-error'}>{source.in_progress === "true" ? "In Progress" : "Not In Progress"}</button>
+                            <button on:click={() => handleToggleCompleted(source)} class={source.completed === "true" ? 'text-success' : 'text-error'}>{source.completed === "true" ? "Completed" : "Not Completed"}</button>
                         </div>
                     </div>
             {/each}
