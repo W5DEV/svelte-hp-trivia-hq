@@ -45,7 +45,6 @@
             });
             if (response.ok) {
                 getSources();
-                console.log(source.status)
             } else {
                 alert(response.status + ': Error toggleing source status.');
             }
@@ -53,7 +52,7 @@
             console.error(error);
         }
     }
-
+    
     getSources();
 
     $: sources
