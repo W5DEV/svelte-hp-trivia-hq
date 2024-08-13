@@ -74,7 +74,7 @@
 
     async function getQuestions() {
         try {
-            const response = await fetch('https://hp-api.greatidea.dev/api/questions?topic=Harry Potter', {
+            const response = await fetch('https://hp-api.greatidea.dev/api/questions/topic?topic=Harry Potter', {
                 method: 'GET' 
             });
             if (response.ok) {
