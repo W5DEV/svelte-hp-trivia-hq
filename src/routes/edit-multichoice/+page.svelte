@@ -3,9 +3,43 @@
 	import { current_question, token } from '../../store';
 	import { goto } from '$app/navigation';
 	import { required, useForm } from 'svelte-use-form';
-	import { question_origins } from '../../sources';
 
-    const questionOrigins = question_origins;
+	onMount(() => {
+		getUser();
+        getQuestionOrigins();
+	});
+
+    type Source = {
+        id: string;
+        order: number;
+        source: string;
+        citation: string;
+        topic: string;
+        active: string;
+        completed: string;
+        created_at: string;
+        updated_at: string;
+    }
+
+    let questionOrigins: Source[] = [];
+
+    async function getQuestionOrigins() {
+        try {
+            const response = await fetch('https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter', {
+                method: 'GET' 
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // set sources = data.data and sort by data.order
+                questionOrigins = data.data.sort((a: Source, b: Source) => a.order - b.order);
+            } else {
+                alert(response.status + ': Error retrieving questions.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     const questionOriginsActive = questionOrigins.filter((origin) => origin.active);
 
@@ -234,7 +268,7 @@
                 >
                     <option disabled>Select a Question Origin</option>
                     {#each questionOriginsActive as origin}
-                        <option selected={question?.question_origin === origin.name} value={origin.name}>{origin.name}</option>
+                        <option selected={question?.question_origin === origin.source} value={origin.source}>{origin.source}</option>
                     {/each}
                 </select>
                 <div class="w-full text-sm text-error" hidden={$form.question_origin.valid}>

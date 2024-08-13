@@ -1,11 +1,44 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { question_origins } from '../../sources';
 	import { questions } from '../../store';
 
-	$questions = [];
+	onMount(() => {
+        getQuestionOrigins();
+	});
 
-	const availableQuizzes = question_origins.filter((origin) => origin.active === true);
+    type Source = {
+        id: string;
+        order: number;
+        source: string;
+        citation: string;
+        topic: string;
+        active: string;
+        completed: string;
+        created_at: string;
+        updated_at: string;
+    }
+
+    let availableQuizzes: Source[] = [];
+
+    async function getQuestionOrigins() {
+        try {
+            const response = await fetch('https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter', {
+                method: 'GET' 
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // set sources = data.data and sort by data.order
+                availableQuizzes = data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.active === "true");
+            } else {
+                alert(response.status + ': Error retrieving questions.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+	}
+
+	$questions = [];
 
 	let availableTags: string[] = [];
 
@@ -196,10 +229,10 @@
 						class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-primary"
 					>
 						<button
-							on:click={() => handleQuizClick(quiz.name)}
-							class="text-xl font-medium text-left text-primary">{quiz.name}</button
+							on:click={() => handleQuizClick(quiz.source)}
+							class="text-xl font-medium text-left text-primary">{quiz.source}</button
 						>
-						<a href={quiz.link} target="_blank" class="link link-info link-hover">
+						<a href={quiz.citation} target="_blank" class="link link-info link-hover">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"

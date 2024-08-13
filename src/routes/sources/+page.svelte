@@ -8,8 +8,8 @@
         source: string;
         citation: string;
         topic: string;
-        active: boolean;
-        completed: boolean;
+        active: string;
+        completed: string;
         created_at: string;
         updated_at: string;
     }
@@ -27,16 +27,8 @@
             });
             if (response.ok) {
                 const data = await response.json();
-                // set sources = data.data and sort by active
-                sources = data.data.sort((a: Source, b: Source) => {
-                    if (a.active && !b.active) {
-                        return -1;
-                    }
-                    if (!a.active && b.active) {
-                        return 1;
-                    }
-                    return 0;
-                });
+                // set sources = data.data and sort by data.order
+                sources = data.data.sort((a: Source, b: Source) => a.order - b.order);
             } else {
                 alert(response.status + ': Error retrieving questions.');
             }
@@ -46,21 +38,13 @@
     }
 
     async function handleMarkActive(source: Source) {
-        const updatedSource = {
-            source: source.source,
-            citation: source.citation,
-            topic: source.topic,
-            active: !source.active,
-            completed: source.completed
-        }
         try {
             const response = await fetch(`http://hp-api.greatidea.dev/api/sources/toggle-active/${source.id}`, {
                 method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + newToken
-				},
-                body: JSON.stringify({updatedSource})
+				}
             });
             if (response.ok) {
                 getSources();
@@ -73,21 +57,13 @@
     }
 
     async function handleMarkCompleted(source: Source) {
-        const updatedSource = {
-            source: source.source,
-            citation: source.citation,
-            topic: source.topic,
-            active: source.active,
-            completed: !source.completed
-        }
         try {
             const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-completed/${source.id}`, {
                 method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + newToken
-				},
-                body: JSON.stringify({updatedSource})
+				}
             });
             if (response.ok) {
                 getSources();
@@ -110,9 +86,9 @@
         <a class="text-base-100 btn btn-primary btn-wide" href="/dashboard">Dashboard</a>
         <div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
             {#each sources as source}
-                    <div class="flex flex-col items-center justify-between gap-3 p-4 border rounded-lg border-base-300">
-                        <div class="flex flex-row items-center justify-between gap-3">
-                            <h2 class={source.active ? `text-xl font-medium text-success` : `text-xl font-light italic text-error`}>{source.source}</h2>
+                    <div class="flex flex-col items-start justify-between gap-3 p-4 border rounded-lg border-base-300">
+                        <div class="flex flex-row items-center justify-between w-full gap-3">
+                            <h2 class={source.active === "true" ? `text-xl font-medium text-success` : `text-xl font-light italic text-error`}>{source.source}</h2>
                             <a href={source.citation} target="_blank" class="link link-info link-hover">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -128,8 +104,8 @@
                             </a>
                         </div>
                         <div class="flex flex-row items-center justify-between w-full">
-                            <button on:click={() => handleMarkActive(source)} class={source.active ? 'text-success' : 'text-error'}>Active</button>
-                            <button on:click={() => handleMarkCompleted(source)} class={source.completed ? 'text-success' : 'text-error'}>Completed</button>
+                            <button on:click={() => handleMarkActive(source)} class={source.active === "true" ? 'text-success' : 'text-error'}>{source.active === "true" ? "Active" : "Inactive"}</button>
+                            <button on:click={() => handleMarkCompleted(source)} class={source.completed === "true" ? 'text-success' : 'text-error'}>{source.completed === "true" ? "Completed" : "Not Completed"}</button>
                         </div>
                     </div>
             {/each}
