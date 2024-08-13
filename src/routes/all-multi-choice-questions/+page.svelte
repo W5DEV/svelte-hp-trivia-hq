@@ -27,8 +27,7 @@
         source: string;
         citation: string;
         topic: string;
-        active: string;
-        completed: string;
+        status: string;
         created_at: string;
         updated_at: string;
     }
@@ -58,7 +57,7 @@
         }
     }
 
-    $: questionOriginsActive = questionOrigins.filter((origin) => origin.active === "true");
+    $: questionOriginsActive = questionOrigins.filter((origin) => origin.status !== "queued");
 
     let availableTags: string[] = [];
 

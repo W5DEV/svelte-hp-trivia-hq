@@ -8,14 +8,10 @@
         source: string;
         citation: string;
         topic: string;
-        active: string;
-        completed: string;
-        in_progress: string;
+        status: string;
         created_at: string;
         updated_at: string;
     }
-
-    const questionOrigins = question_origins;
 
     const newToken = $token;
 
@@ -38,9 +34,9 @@
         }
     }
 
-    async function handleToggleActive(source: Source) {
+    async function handleToggleStatus(source: Source) {
         try {
-            const response = await fetch(`http://hp-api.greatidea.dev/api/sources/toggle-active/${source.id}`, {
+            const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-status/${source.id}`, {
                 method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
@@ -49,46 +45,9 @@
             });
             if (response.ok) {
                 getSources();
+                console.log(source.status)
             } else {
-                alert(response.status + ': Error toggling source active.');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function handleToggleCompleted(source: Source) {
-        try {
-            const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-completed/${source.id}`, {
-                method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + newToken
-				}
-            });
-            if (response.ok) {
-                getSources();
-            } else {
-                alert(response.status + ': Error toggling source completed.');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function handleToggleInProgress(source: Source) {
-        try {
-            const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-in-progress/${source.id}`, {
-                method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + newToken
-				}
-            });
-            if (response.ok) {
-                getSources();
-            } else {
-                alert(response.status + ': Error toggleing source in progress.');
+                alert(response.status + ': Error toggleing source status.');
             }
         } catch (error) {
             console.error(error);
@@ -108,7 +67,7 @@
             {#each sources as source}
                     <div class="flex flex-col items-start justify-between gap-3 p-4 border rounded-lg border-base-300">
                         <div class="flex flex-row items-center justify-between w-full gap-3">
-                            <h2 class={source.active === "true" ? `text-xl font-medium text-success` : `text-xl font-light italic text-error`}>{source.source}</h2>
+                            <h2 class={source.status === "completed" ? `text-xl font-medium text-success` : source.status === "in-progress" ? `text-xl font-light italic text-warning` : `text-xl font-light italic text-error`}>{source.source}</h2>
                             <a href={source.citation} target="_blank" class="link link-info link-hover">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -124,9 +83,7 @@
                             </a>
                         </div>
                         <div class="flex flex-row items-center justify-between w-full">
-                            <button on:click={() => handleToggleActive(source)} class={source.active === "true" ? 'text-success' : 'text-error'}>{source.active === "true" ? "Active" : "Inactive"}</button>
-                            <button on:click={() => handleToggleInProgress(source)} class={source.in_progress === "true" ? 'text-success' : 'text-error'}>{source.in_progress === "true" ? "In Progress" : "Not In Progress"}</button>
-                            <button on:click={() => handleToggleCompleted(source)} class={source.completed === "true" ? 'text-success' : 'text-error'}>{source.completed === "true" ? "Completed" : "Not Completed"}</button>
+                            <button on:click={() => handleToggleStatus(source)} class={source.status === "completed" ? `capitalize font-medium text-success` : source.status === "in-progress" ? `capitalize font-light italic text-warning` : `capitalize font-light italic text-error`}>{source.status}</button>
                         </div>
                     </div>
             {/each}

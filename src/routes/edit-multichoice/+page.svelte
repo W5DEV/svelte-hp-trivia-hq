@@ -15,9 +15,7 @@
         source: string;
         citation: string;
         topic: string;
-        active: string;
-        completed: string;
-        in_progress: string;
+        status: string;
         created_at: string;
         updated_at: string;
     }
@@ -42,7 +40,7 @@
     }
 
 
-    $: questionOriginsActive = questionOrigins.filter((origin) => origin.in_progress === "true");
+    $: questionOriginsActive = questionOrigins.filter((origin) => origin.status === "in-progress");
 
 	let newToken = $token;
     let question = $current_question;

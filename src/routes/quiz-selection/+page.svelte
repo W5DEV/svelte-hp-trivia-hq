@@ -13,8 +13,7 @@
         source: string;
         citation: string;
         topic: string;
-        active: string;
-        completed: string;
+		status: string;
         created_at: string;
         updated_at: string;
     }
@@ -29,7 +28,7 @@
             if (response.ok) {
                 const data = await response.json();
                 // set sources = data.data and sort by data.order
-                availableQuizzes = data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.active === "true");
+                availableQuizzes = data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.status === "completed");
             } else {
                 alert(response.status + ': Error retrieving questions.');
             }
