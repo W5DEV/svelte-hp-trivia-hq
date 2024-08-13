@@ -41,7 +41,7 @@
     }
 
 
-    const questionOriginsActive = questionOrigins.filter((origin) => origin.active);
+    $: questionOriginsActive = questionOrigins.filter((origin) => origin.active === "true");
 
 	let newToken = $token;
     let question = $current_question;
