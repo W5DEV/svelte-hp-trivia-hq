@@ -2,7 +2,18 @@
 	import { onMount } from "svelte";
 	import { token, current_question } from "../../store";
 	import { goto } from "$app/navigation";
-	import { question_origins } from "../../sources";
+
+    type Source = {
+        id: string;
+        order: number;
+        source: string;
+        citation: string;
+        topic: string;
+        active: string;
+        completed: string;
+        created_at: string;
+        updated_at: string;
+    }
 
    type Question = {
         id: string;
@@ -23,8 +34,31 @@
     }
 
     onMount(() => {
-        getUser();
-    });
+		getUser();
+	    fetchAvailableTags();
+        getQuestionOrigins();
+	});
+
+    let questionOrigins: Source[] = [];
+
+    async function getQuestionOrigins() {
+        try {
+            const response = await fetch('https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter', {
+                method: 'GET' 
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // set sources = data.data and sort by data.order
+                questionOrigins = data.data.sort((a: Source, b: Source) => a.order - b.order);
+            } else {
+                alert(response.status + ': Error retrieving questions.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    $: questionOriginsActive = questionOrigins.filter((origin) => origin.active === "true");
 
     let availableTags: string[] = [];
 
@@ -44,10 +78,6 @@
 			console.error(error);
 		}
 	}
-
-	fetchAvailableTags();
-
-    const sources = question_origins.filter((origin) => origin.active === true);
 
     const newToken = $token;
 
@@ -135,8 +165,8 @@
             <div class="flex flex-row flex-wrap items-center justify-center gap-4">
                 <select class="select select-bordered select-primary select-sm" bind:value={filter}>
                     <option value="all">All</option>
-                    {#each sources as source}
-                        <option value={source.name}>{source.name}</option>
+                    {#each questionOrigins as source}
+                        <option value={source.source}>{source.source}</option>
                     {/each}
                 </select>
             </div>

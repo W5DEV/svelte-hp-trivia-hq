@@ -35,8 +35,8 @@
 
 	onMount(() => {
 		getUser();
-        getQuestionOrigins();
 	    fetchAvailableTags();
+        getQuestionOrigins();
 	});
 
     let questionOrigins: Source[] = [];
@@ -58,7 +58,7 @@
         }
     }
 
-    const questionOriginsActive = questionOrigins.filter((origin) => origin.active);
+    $: questionOriginsActive = questionOrigins.filter((origin) => origin.active === "true");
 
     let availableTags: string[] = [];
 
