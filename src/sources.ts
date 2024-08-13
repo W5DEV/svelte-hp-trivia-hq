@@ -118,7 +118,7 @@ export const question_origins: Origin[] = [
 	{
 		name: 'The MOST INSANE Harry Potter Trivia Quiz',
 		link: 'https://youtu.be/U18iUTPaH5E?si=tsa8qaHBWGn1L08g',
-		active: false
+		active: true
 	},
 	{
 		name: 'The ULTIMATE Hogwarts Express Harry Potter Quiz',
