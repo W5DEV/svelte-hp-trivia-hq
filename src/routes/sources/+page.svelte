@@ -4,6 +4,7 @@
 
     type Source = {
         id: string;
+        order: number;
         source: string;
         citation: string;
         topic: string;
@@ -53,7 +54,7 @@
             completed: source.completed
         }
         try {
-            const response = await fetch(`http://hp-api.greatidea.dev/api/sources/${source.id}`, {
+            const response = await fetch(`http://hp-api.greatidea.dev/api/sources/toggle-active/${source.id}`, {
                 method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
@@ -80,7 +81,7 @@
             completed: !source.completed
         }
         try {
-            const response = await fetch(`https://hp-api.greatidea.dev/api/sources/${source.id}`, {
+            const response = await fetch(`https://hp-api.greatidea.dev/api/sources/toggle-completed/${source.id}`, {
                 method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
