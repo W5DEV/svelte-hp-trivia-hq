@@ -113,7 +113,8 @@
 			type: 'multi-choice',
 			correct_answer: $form.correct_answer.value,
             completed: $form.completed.value ? 'true' : 'false',
-            question_origin: $form.question_origin.value
+            question_origin: $form.question_origin.value,
+            topic: 'Harry Potter'
 		};
 		try {
 			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/${question?.id}`, {
