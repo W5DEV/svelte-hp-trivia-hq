@@ -28,7 +28,7 @@
 			.split('\n')
 			.sort()
 			.join(', ');
-		const sortedAnswer = answer.split(',').sort().join(', ');
+		const sortedAnswer = answer.split('\n').sort().join(', ');
 		if (sortedCorrectAnswers === sortedAnswer) {
 			numCorrect++;
 			await fetch(
