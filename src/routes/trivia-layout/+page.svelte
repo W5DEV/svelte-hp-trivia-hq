@@ -28,7 +28,13 @@
 			.split('\n')
 			.sort()
 			.join(', ');
-		const sortedAnswer = answer.split('\n').sort().join(', ');
+		let sortedAnswer: string;
+		if (currentQuestions[currentQuestionIndex].type === 'multi-choice') {
+			sortedAnswer = answer;
+		} else {
+			sortedAnswer = answer.split(',').sort().join(', ');
+		}
+
 		if (sortedCorrectAnswers === sortedAnswer) {
 			numCorrect++;
 			await fetch(
