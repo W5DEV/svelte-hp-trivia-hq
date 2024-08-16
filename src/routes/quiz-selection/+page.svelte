@@ -213,11 +213,11 @@
 		</div>
 		{#if availableQuizzes.length > 0 || availableTags.length > 0}
 			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Topic</h2>
-			<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
+			<div class="flex flex-row flex-wrap items-center justify-center w-full gap-4">
 				{#each availableTags as tag}
 						<button
 							on:click={() => getQuestionsByTag(tag)}
-							class="h-24 text-xl font-medium text-left capitalize btn btn-secondary text-primary">{tag}</button
+							class="text-xl font-medium text-center capitalize text-primary hover:underline">{tag}</button
 						>
 				{/each}
 			</div>
