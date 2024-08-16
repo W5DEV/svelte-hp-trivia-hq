@@ -62,7 +62,7 @@
 
 	async function getQuestionsByTag(tag: string) {
 		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tag?tag=${tag}&count=25`, {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tag?tag=${tag}`, {
 				method: 'GET'
 			});
 			if (response.ok) {
@@ -167,7 +167,7 @@
 
 	async function handleRandomQuestions() {
 		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/random?count=25`, {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/random`, {
 				method: 'GET'
 			});
 			if (response.ok) {
