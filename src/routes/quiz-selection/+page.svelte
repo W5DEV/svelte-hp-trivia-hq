@@ -62,7 +62,7 @@
 
 	async function getQuestionsByTag(tag: string) {
 		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tag?tag=${tag}`, {
+			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tag?tag=${tag}&count=25`, {
 				method: 'GET'
 			});
 			if (response.ok) {
