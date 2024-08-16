@@ -4,7 +4,7 @@
 
 <section class="flex items-center justify-center px-8 font-medium text-secondary">
     <div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
-        <h1 class="text-2xl font-bold text-primary">World of Harry <a href="https://great-idea-trivia.vercel.app/login">Potter</a> Trivia</h1>
+        <h1 class="text-2xl font-bold text-primary">World of Harry <a href="https://trivia-hq.com/login">Potter</a> Trivia</h1>
         <p class="text-primary">Test your knowledge of the Harry Potter Universe with random multi-choice, true or false, or multi-select questions! Choose from a variety of randomized quizzes or select a focused topic to test your knowledge!</p>
         <p class="w-full -mb-4 text-left">As with all things, there are a few caveats and disclaimers:</p>
         <ul class="flex flex-col gap-2 ml-10 list-disc">
