@@ -204,7 +204,7 @@
 						</button>
 						<button
 							on:click={() => handleDislike(question)}
-							class={question.isLiked ? 'text-error' : 'text-slytherin-silver hover:text-error'}
+							class={question.isDisliked ? 'text-error' : 'text-slytherin-silver hover:text-error'}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
