@@ -1,24 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { questions } from '../../store';
+	import { questions, sources } from '../../store';
+	import type { Source } from '../../store';
 
 	onMount(() => {
-        getQuestionOrigins();
-	});
-
-    type Source = {
-        id: string;
-        order: number;
-        source: string;
-        citation: string;
-        topic: string;
-		status: string;
-        created_at: string;
-        updated_at: string;
-    }
-
-    let availableQuizzes: Source[] = [];
+        if ($sources.length === 0) {
+            getQuestionOrigins();
+        }
+    });
 
     async function getQuestionOrigins() {
         try {
@@ -28,7 +18,7 @@
             if (response.ok) {
                 const data = await response.json();
                 // set sources = data.data and sort by data.order
-                availableQuizzes = data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.status === "completed");
+                sources.set(data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.status === "completed"));
             } else {
                 alert(response.status + ': Error retrieving questions.');
             }
@@ -211,7 +201,7 @@
 				class="btn btn-primary text-base-100 btn-wide">Random Questions</button
 			>
 		</div>
-		{#if availableQuizzes.length > 0 || availableTags.length > 0}
+		{#if $sources.length > 0 || availableTags.length > 0}
 			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Topic</h2>
 			<div class="flex flex-row flex-wrap items-center justify-center w-full gap-4">
 				{#each availableTags as tag}
@@ -223,15 +213,15 @@
 			</div>
 			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Source</h2>
 			<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
-				{#each availableQuizzes as quiz}
+				{#each $sources as source}
 					<div
 						class="flex flex-row items-start justify-between gap-3 p-4 border rounded-lg border-primary"
 					>
 						<button
-							on:click={() => handleQuizClick(quiz.source)}
-							class="text-xl font-medium text-left text-primary">{quiz.source}</button
+							on:click={() => handleQuizClick(source.source)}
+							class="text-xl font-medium text-left text-primary">{source.source}</button
 						>
-						<a href={quiz.citation} target="_blank" class="link link-info link-hover">
+						<a href={source.citation} target="_blank" class="link link-info link-hover">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"

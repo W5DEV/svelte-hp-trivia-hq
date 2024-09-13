@@ -1,13 +1,34 @@
 <script lang="ts">
-	import type { Question } from "../store";
+	import { sources, type Question, type Source } from "../store";
     import parchment from "../lib/images/parchment-bg.svg";
-	import { question_origins } from "../sources";
 	import { onMount } from "svelte";
-
     export let question: Question;
     export let onAnswer: (answer: string) => void;
     export let totalQuestions: number;
     export let questionNumber: number;
+
+    onMount(() => {
+        if ($sources.length === 0) {
+            getQuestionOrigins();
+        }
+    });
+
+    async function getQuestionOrigins() {
+        try {
+            const response = await fetch('https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter', {
+                method: 'GET' 
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // set sources = data.data and sort by data.order
+                sources.set(data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.status === "completed"));
+            } else {
+                alert(response.status + ': Error retrieving questions.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+	}
 
     type Answer = {
         answer: string;
@@ -53,8 +74,11 @@
     }
 
     function getOriginLink() {
-        const origin = question_origins.find((origin) => origin.name === question.question_origin);
-        return origin?.link;
+        if ($sources.length === 0) {
+            getQuestionOrigins();
+        }
+        const origin = $sources.find((origin) => origin.source === question.question_origin);
+        return origin?.citation;
     }
 </script>
 
@@ -101,7 +125,7 @@
             </div>
         {/if}
         <div class="flex flex-row items-end justify-end w-full top-10 right-10">
-            <a href={getOriginLink()} class="text-sm font-medium tooltip tooltip-left text-gryffindor-red" data-tip={question.question_origin}>
+            <a href={getOriginLink()} target="_blank" class="text-sm font-medium tooltip tooltip-left text-gryffindor-red" data-tip={question.question_origin}>
                 <svg xmlns="http://www.w3.org/2000/svg" target="_blank" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                 </svg>

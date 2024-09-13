@@ -19,6 +19,17 @@ export type Question = {
 	created_at: string;
 };
 
+export type Source = {
+	id: string;
+	order: number;
+	source: string;
+	citation: string;
+	topic: string;
+	status: string;
+	created_at: string;
+	updated_at: string;
+};
+
 export const token = writable((browser && localStorage.getItem('token')) || '');
 token.subscribe((val) => {
 	if (browser) return (localStorage.token = val);
@@ -37,4 +48,9 @@ questions.subscribe((val) => {
 export const theme = writable<string>((browser && localStorage.getItem('theme')) || '');
 theme.subscribe((val) => {
 	if (browser) return (localStorage.theme = val);
+});
+
+export const sources = writable<Source[]>([]);
+sources.subscribe((val) => {
+	if (browser) return (localStorage.sources = JSON.stringify(val));
 });
