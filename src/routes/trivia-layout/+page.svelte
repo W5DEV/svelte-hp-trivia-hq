@@ -29,10 +29,10 @@
 			.sort()
 			.join(', ');
 		let sortedAnswer: string;
-		if (currentQuestions[currentQuestionIndex].type === 'multi-choice') {
-			sortedAnswer = answer;
+		if (currentQuestions[currentQuestionIndex].type === 'multi-select') {
+			sortedAnswer = answer.split('\n').sort().join(', ');
 		} else {
-			sortedAnswer = answer.split(',').sort().join(', ');
+			sortedAnswer = answer;
 		}
 
 		if (sortedCorrectAnswers === sortedAnswer) {

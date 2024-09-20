@@ -68,7 +68,7 @@
     }
 
     function handleAnswer() {
-        const finalAnswer: string = selectedAnswer.join(',');
+        const finalAnswer: string = selectedAnswer.join('\n');
         selectedAnswer = [];
         onAnswer(finalAnswer);
     }
