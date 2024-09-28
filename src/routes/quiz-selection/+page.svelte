@@ -5,26 +5,33 @@
 	import type { Source } from '../../store';
 
 	onMount(() => {
-        if ($sources.length === 0) {
-            getQuestionOrigins();
-        }
-    });
+		if ($sources.length === 0) {
+			getQuestionOrigins();
+		}
+	});
 
-    async function getQuestionOrigins() {
-        try {
-            const response = await fetch('https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter', {
-                method: 'GET' 
-            });
-            if (response.ok) {
-                const data = await response.json();
-                // set sources = data.data and sort by data.order
-                sources.set(data.data.sort((a: Source, b: Source) => a.order - b.order).filter((origin: Source) => origin.status === "completed"));
-            } else {
-                alert(response.status + ': Error retrieving questions.');
-            }
-        } catch (error) {
-            console.error(error);
-        }
+	async function getQuestionOrigins() {
+		try {
+			const response = await fetch(
+				'https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter',
+				{
+					method: 'GET'
+				}
+			);
+			if (response.ok) {
+				const data = await response.json();
+				// set sources = data.data and sort by data.order
+				sources.set(
+					data.data
+						.sort((a: Source, b: Source) => a.order - b.order)
+						.filter((origin: Source) => origin.status === 'completed')
+				);
+			} else {
+				alert(response.status + ': Error retrieving questions.');
+			}
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	$questions = [];
@@ -205,10 +212,11 @@
 			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Topic</h2>
 			<div class="flex flex-row flex-wrap items-center justify-center w-full gap-4">
 				{#each availableTags as tag}
-						<button
-							on:click={() => getQuestionsByTag(tag)}
-							class="text-xl font-medium text-center capitalize text-primary hover:underline">{tag}</button
-						>
+					<button
+						on:click={() => getQuestionsByTag(tag)}
+						class="text-xl font-medium text-center capitalize text-primary hover:underline"
+						>{tag}</button
+					>
 				{/each}
 			</div>
 			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Source</h2>

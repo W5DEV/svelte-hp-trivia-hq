@@ -1,9 +1,9 @@
 <script>
-	import Navigation from "./Navigation.svelte";
-	import ThemeSwitcher from "./ThemeSwitcher.svelte";
-
+	import Navigation from './Navigation.svelte';
+	import ThemeSwitcher from './ThemeSwitcher.svelte';
 </script>
+
 <header class="w-full">
-    <ThemeSwitcher />
-    <Navigation />
+	<ThemeSwitcher />
+	<Navigation />
 </header>
