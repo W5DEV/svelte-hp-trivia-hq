@@ -4,6 +4,10 @@
 	import { questions } from '../../store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import SubmitAnswer from '$lib/api/SubmitAnswer';
+	import SubmitLike from '$lib/api/SubmitLike';
+	import SubmitDisike from '$lib/api/SubmitDislike';
+	import { SubmitReport } from '$lib/api/SubmitReport';
 
 	const currentQuestions = $questions;
 
@@ -35,22 +39,7 @@
 			sortedAnswer = answer;
 		}
 
-		if (sortedCorrectAnswers === sortedAnswer) {
-			numCorrect++;
-			await fetch(
-				`https://hp-api.greatidea.dev/api/questions/answer?questionsId=${currentQuestions[currentQuestionIndex].id}&is_correct=true`,
-				{
-					method: 'PUT'
-				}
-			);
-		} else {
-			await fetch(
-				`https://hp-api.greatidea.dev/api/questions/answer?questionsId=${currentQuestions[currentQuestionIndex].id}&is_correct=false`,
-				{
-					method: 'PUT'
-				}
-			);
-		}
+		const isCorrect = await SubmitAnswer(currentQuestions[currentQuestionIndex].id, sortedAnswer);
 
 		questionArray.update((questionArray) => [
 			...questionArray,
@@ -59,7 +48,7 @@
 				question: currentQuestions[currentQuestionIndex].question,
 				correct_answer: sortedCorrectAnswers,
 				your_answer: sortedAnswer,
-				correct: sortedCorrectAnswers === sortedAnswer,
+				correct: isCorrect,
 				isLiked: false,
 				isDisliked: false,
 				isReported: false
@@ -81,12 +70,7 @@
 				);
 			});
 
-			await fetch(
-				`https://hp-api.greatidea.dev/api/questions/like?questionsId=${currentQuestions[question.questionNumber - 1].id}`,
-				{
-					method: 'PUT'
-				}
-			);
+			await SubmitLike(currentQuestions[question.questionNumber - 1].id);
 		}
 	}
 
@@ -102,12 +86,7 @@
 				);
 			});
 
-			await fetch(
-				`https://hp-api.greatidea.dev/api/questions/dislike?questionsId=${currentQuestions[question.questionNumber - 1].id}`,
-				{
-					method: 'PUT'
-				}
-			);
+			await SubmitDisike(currentQuestions[question.questionNumber - 1].id);
 		}
 	}
 
@@ -116,24 +95,16 @@
 			return;
 		}
 		const reportedQuestion = {
-			access_key: '158aa036-6978-45e0-b4e2-780bd06ee898',
+			question_id: currentQuestions[question.questionNumber - 1].id,
 			question: question.question,
 			answer_list: currentQuestions[question.questionNumber - 1].answers,
 			correct_answer: question.correct_answer,
 			provided_answer: question.your_answer,
 			correct: question.correct
 		};
-		const json = JSON.stringify(reportedQuestion);
 
-		const response = await fetch('https://api.web3forms.com/submit', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json'
-			},
-			body: json
-		});
-		const result = await response.json();
+		const result = await SubmitReport(reportedQuestion);
+
 		if (result.success) {
 			const updatedQuestion = { ...question, isReported: true };
 

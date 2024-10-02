@@ -2,7 +2,15 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { questions, sources } from '../../store';
-	import type { Source } from '../../store';
+	import { GetSources } from '$lib/api/GetSources';
+	import { GetTags } from '$lib/api/GetTags';
+	import GetQuestionsByTag from '$lib/api/GetQuestionsByTag';
+	import GetQuestionsBySource from '$lib/api/GetQuestionsBySource';
+	import { GetMostDifficultQuestions } from '$lib/api/GetMostDifficultQuestions';
+	import { GetMostPopularQuestions } from '$lib/api/GetMostPopularQuestions';
+	import GetMostLikedQuestions from '$lib/api/GetMostLikedQuestions';
+	import GetLeastAnsweredQuestions from '$lib/api/GetLeastAnsweredQuestions';
+	import GetRandomQuestions from '$lib/api/GetRandomQuestions';
 
 	onMount(() => {
 		if ($sources.length === 0) {
@@ -11,27 +19,7 @@
 	});
 
 	async function getQuestionOrigins() {
-		try {
-			const response = await fetch(
-				'https://hp-api.greatidea.dev/api/sources/topic?topic=Harry Potter',
-				{
-					method: 'GET'
-				}
-			);
-			if (response.ok) {
-				const data = await response.json();
-				// set sources = data.data and sort by data.order
-				sources.set(
-					data.data
-						.sort((a: Source, b: Source) => a.order - b.order)
-						.filter((origin: Source) => origin.status === 'completed')
-				);
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
-		}
+		await GetSources();
 	}
 
 	$questions = [];
@@ -39,143 +27,57 @@
 	let availableTags: string[] = [];
 
 	async function fetchAvailableTags() {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tags`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				data.data = data.data.filter((tag: string) => tag !== '');
-				availableTags = data.data;
-			} else {
-				alert(response.status + ': Error retrieving tags.');
-			}
-		} catch (error) {
-			console.error(error);
-		}
+		availableTags = await GetTags();
 	}
 
 	fetchAvailableTags();
 
 	async function getQuestionsByTag(tag: string) {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/tag?tag=${tag}`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetQuestionsByTag(tag);
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 
 	async function handleQuizClick(quizName: string) {
-		try {
-			const response = await fetch(
-				`https://hp-api.greatidea.dev/api/questions/origin?question_origin=${quizName}`,
-				{
-					method: 'GET'
-				}
-			);
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetQuestionsBySource(quizName);
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 
 	async function handleMostDifficult() {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/difficulty`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetMostDifficultQuestions();
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 
 	async function handleMostPopular() {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/popular`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetMostPopularQuestions();
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 
 	async function handleMostLiked() {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/most-liked`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetMostLikedQuestions();
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 
 	async function handleLeastAnswered() {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/least-answered`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetLeastAnsweredQuestions();
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 
 	async function handleRandomQuestions() {
-		try {
-			const response = await fetch(`https://hp-api.greatidea.dev/api/questions/random`, {
-				method: 'GET'
-			});
-			if (response.ok) {
-				const data = await response.json();
-				$questions = data.data;
-				goto('/trivia-layout');
-			} else {
-				alert(response.status + ': Error retrieving questions.');
-			}
-		} catch (error) {
-			console.error(error);
+		$questions = await GetRandomQuestions();
+		if ($questions.length > 0) {
+			goto('/trivia-layout');
 		}
 	}
 </script>
