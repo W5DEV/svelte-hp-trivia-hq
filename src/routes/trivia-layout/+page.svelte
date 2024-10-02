@@ -159,7 +159,7 @@
 							? `text-lg font-medium text-success`
 							: `text-lg font-medium text-error italic line-through`}
 					>
-						Your Answer: {question.your_answer}
+						Your Answer: {question.your_answer.split('|').sort().join(', ')}
 					</p>
 					<div class="flex flex-row items-center justify-end w-full gap-6">
 						<button
