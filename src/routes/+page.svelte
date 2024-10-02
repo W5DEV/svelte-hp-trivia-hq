@@ -88,10 +88,15 @@
 
 <div class="flex items-center justify-center px-8 font-medium text-secondary">
 	<div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
-		<h1 class="text-2xl font-bold text-primary">
-			World of Harry <a href="https://trivia-hq.com/login">Potter</a> Trivia
-		</h1>
-		<a href="/disclaimer" class="text-xs font-bold text-primary">Disclaimer</a>
+		<div class="flex flex-col items-center justify-center w-full">
+			<h1 class="text-2xl font-bold text-primary">
+				World of Harry <a href="https://trivia-hq.com/login">Potter</a> Trivia
+			</h1>
+			<a
+				href="/disclaimer"
+				class="text-xs italic font-light underline text-secondary hover:font-normal">Disclaimer</a
+			>
+		</div>
 		<p class="text-primary">
 			Test your knowledge of the Harry Potter Universe with random multi-choice, true or false, or
 			multi-select questions! Choose from a variety of randomized quizzes or select a focused topic
