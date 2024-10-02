@@ -41,6 +41,10 @@
 
 		const isCorrect = await SubmitAnswer(currentQuestions[currentQuestionIndex].id, sortedAnswer);
 
+		if (isCorrect) {
+			numCorrect++;
+		}
+
 		questionArray.update((questionArray) => [
 			...questionArray,
 			{
