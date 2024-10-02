@@ -89,10 +89,10 @@
 <div class="flex items-center justify-center px-8 font-medium text-secondary">
 	<div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
 		<div class="flex flex-col items-center justify-center w-full">
-			<h1 class="text-2xl font-bold text-primary">World of Harry Potter Trivia</h1>
+			<h1 class="text-4xl font-semibold text-primary font-caveat">World of Harry Potter Trivia</h1>
 			<a
 				href="/disclaimer"
-				class="text-xs italic font-light underline text-secondary hover:font-normal">Disclaimer</a
+				class="text-xs italic font-light text-secondary hover:underline font-caveat">Disclaimer</a
 			>
 		</div>
 		<p class="text-primary">
@@ -125,17 +125,21 @@
 			>
 		</div>
 		{#if $sources.length > 0 || availableTags.length > 0}
-			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Topic</h2>
+			<h2 class="w-full mt-10 text-4xl font-bold text-center text-primary font-caveat">
+				Quizzes by Topic
+			</h2>
 			<div class="flex flex-row flex-wrap items-center justify-center w-full gap-4">
 				{#each availableTags as tag}
 					<button
 						on:click={() => getQuestionsByTag(tag)}
-						class="text-xl font-medium text-center capitalize text-primary hover:underline"
+						class="text-2xl font-medium text-center capitalize text-primary hover:underline font-caveat"
 						>{tag}</button
 					>
 				{/each}
 			</div>
-			<h2 class="w-full mt-10 text-2xl font-bold text-center text-primary">Quizzes by Source</h2>
+			<h2 class="w-full mt-10 text-4xl font-bold text-center text-primary font-caveat">
+				Quizzes by Source
+			</h2>
 			<div class="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
 				{#each $sources as source}
 					<div
@@ -143,7 +147,8 @@
 					>
 						<button
 							on:click={() => handleQuizClick(source.source)}
-							class="text-xl font-medium text-left text-primary">{source.source}</button
+							class="text-xl font-semibold text-left text-primary font-caveat hover:underline"
+							>{source.source}</button
 						>
 						<a href={source.citation} target="_blank" class="link link-info link-hover">
 							<svg
