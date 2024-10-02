@@ -34,7 +34,7 @@
 			.join(', ');
 		let sortedAnswer: string;
 		if (currentQuestions[currentQuestionIndex].type === 'multi-select') {
-			sortedAnswer = answer.split('\n').sort().join(', ');
+			sortedAnswer = answer.split('\n').sort().join('|');
 		} else {
 			sortedAnswer = answer;
 		}
