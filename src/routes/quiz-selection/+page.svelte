@@ -82,6 +82,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Quiz Selection</title>
+</svelte:head>
+
 <div class="flex items-center justify-center px-8 font-medium text-secondary">
 	<div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
 		<h2 class="w-full text-2xl font-bold text-center text-primary">Available Quizzes</h2>

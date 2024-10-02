@@ -127,6 +127,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Harry Potter Trivia</title>
+</svelte:head>
+
 {#if currentQuestionIndex < currentQuestions.length}
 	<QuestionCanvas
 		question={currentQuestions[currentQuestionIndex]}
