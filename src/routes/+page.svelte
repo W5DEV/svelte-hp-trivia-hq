@@ -89,9 +89,7 @@
 <div class="flex items-center justify-center px-8 font-medium text-secondary">
 	<div class="flex flex-col items-center justify-center flex-1 max-w-4xl gap-6">
 		<div class="flex flex-col items-center justify-center w-full">
-			<h1 class="text-2xl font-bold text-primary">
-				World of Harry <a href="https://trivia-hq.com/login">Potter</a> Trivia
-			</h1>
+			<h1 class="text-2xl font-bold text-primary">World of Harry Potter Trivia</h1>
 			<a
 				href="/disclaimer"
 				class="text-xs italic font-light underline text-secondary hover:font-normal">Disclaimer</a
