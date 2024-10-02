@@ -46,7 +46,7 @@
 			</li>
 		</ul>
 		<div class="flex flex-row flex-wrap items-center justify-center gap-6">
-			<a class="btn btn-primary text-base-100 btn-wide" href="/quiz-selection">View Quizzes</a>
+			<a class="btn btn-primary text-base-100 btn-wide" href="/">Back to Quiz Selection</a>
 		</div>
 	</div>
 </section>

@@ -122,7 +122,7 @@
 
 	onMount(async () => {
 		if (currentQuestions.length === 0) {
-			goto('/quiz-selection');
+			goto('/');
 		}
 	});
 </script>
@@ -144,7 +144,7 @@
 		<p class="text-lg font-medium text-info">
 			You answered {numCorrect} out of {numQuestions} questions correctly.
 		</p>
-		<a href="/quiz-selection" class="btn btn-primary btn-wide">Back to Quiz Selection</a>
+		<a href="/" class="btn btn-primary btn-wide">Back to Quiz Selection</a>
 		<div class="flex flex-col items-center justify-start w-full gap-3">
 			<h2 class="text-xl font-semibold text-primary">Your Answers</h2>
 			<hr class="w-full my-8 border border-secondary" />
@@ -224,6 +224,6 @@
 				<hr class="w-full my-8 border border-secondary" />
 			{/each}
 		</div>
-		<a href="/quiz-selection" class="btn btn-primary btn-wide">Back to Quiz Selection</a>
+		<a href="/" class="btn btn-primary btn-wide">Back to Quiz Selection</a>
 	</div>
 {/if}

@@ -98,11 +98,10 @@
 			to test your knowledge!
 		</p>
 		<p class="mb-4 text-left text-secondary">
-			Select a quiz to test your knowledge! You can choose to select from some randomized quizzes
-			which include 25 questions that are calculated to be either Most Popular, Most Difficult, Most
-			Liked, or Least Answered. You can also choose to take a quiz with 25 completely random
-			questions. Additionally, you can choose from any of the topics at the bottom for a more
-			directed quiz!
+			You can choose to select from our randomized quizzes which include 25 questions that are
+			calculated to be either Most Popular, Most Difficult, Most Liked, or Least Answered. You can
+			also choose to take a quiz with 25 completely random questions. Additionally, you can choose
+			from any of the topics or sources below for a more directed quiz!
 		</p>
 		<div class="flex flex-row flex-wrap items-center justify-center gap-4">
 			<button on:click={() => handleMostDifficult()} class="btn btn-primary text-base-100 btn-wide"
