@@ -34,6 +34,9 @@
 			.join(', ');
 		let sortedAnswer: string;
 		if (currentQuestions[currentQuestionIndex].type === 'multi-select') {
+			// We need to send the answer to the backend as a sorted, pipe-separated string for now,
+			// as commas will cause issues with questions that have commas in the answer. The backend
+			// currently expects pipe-separated strings for multi-select questions.
 			sortedAnswer = answer.split('\n').sort().join('|');
 		} else {
 			sortedAnswer = answer;
