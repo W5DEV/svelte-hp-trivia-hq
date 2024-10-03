@@ -110,17 +110,15 @@
 			correct: question.correct
 		};
 
-		const result = await SubmitReport(reportedQuestion);
+		await SubmitReport(reportedQuestion);
 
-		if (result.success) {
-			const updatedQuestion = { ...question, isReported: true };
+		const updatedQuestion = { ...question, isReported: true };
 
-			questionArray.update((questions) => {
-				return questions.map((q) =>
-					q.questionNumber === question.questionNumber ? updatedQuestion : q
-				);
-			});
-		}
+		questionArray.update((questions) => {
+			return questions.map((q) =>
+				q.questionNumber === question.questionNumber ? updatedQuestion : q
+			);
+		});
 	}
 
 	onMount(async () => {
